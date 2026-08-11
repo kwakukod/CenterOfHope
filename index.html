@@ -13,6 +13,9 @@
 <meta property="og:image" content="https://kwakukod.github.io/CenterOfHope/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="favicon.png">
   
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -184,8 +187,8 @@
   /* ---------- Hero ---------- */
   .hero{
     position: relative;
-    height: 100svh;
-    min-height: 620px;
+    min-height: 100svh;
+    height: auto;
     display:flex;
     flex-direction:column;
     justify-content:space-between;
@@ -239,7 +242,7 @@
     align-items:flex-start;
     max-width: 640px;
     gap: 18px;
-    margin-top: clamp(8px, 2.5vh, 30px);
+    margin-top: 10px;
   }
   .hero h1{
     font-size: clamp(2.6rem, 6.4vw, 5.2rem);
@@ -279,7 +282,7 @@
 
   .hero-actions{ display:flex; flex-wrap:wrap; gap:12px; }
   .hero-meta{
-    display:flex; gap: 34px; margin-top: clamp(16px, 2.5vh, 32px); padding-top: 16px; border-top: 1px solid var(--line);
+    display:flex; gap: 34px; margin-top: clamp(20px, 3vh, 36px); padding-top: 16px; border-top: 1px solid var(--line);
   }
   .hero-meta div{ font-family:'Archivo', sans-serif; }
   .hero-meta .label{ font-size: 0.7rem; text-transform:uppercase; letter-spacing:0.1em; color: var(--ink-soft); margin-bottom:6px; }
@@ -445,6 +448,14 @@
 
   /* Responsive Adjustments */
   @media (max-width: 880px){
+    .hero{ padding-bottom: 28px; min-height: 100svh; }
+	.hero-content{ gap: 22px; }
+	.hero-side{ padding-top: 18px; margin-top: 4px; }
+	.hero-side p{ font-size: 0.96rem;margin-bottom: 14px; }
+	.hero-scripture{ font-size: 0.85rem; margin-bottom: 20px; }
+	.hero-actions{ flex-direction: column; width: 100%; gap: 12px;}
+	.hero-actions .btn{ width: 100%; justify-content: center;padding: 14px 20px; }
+	.hero-meta{ flex-direction: column; gap: 14px; margin-top: 40px; padding-top: 20px; }
     .welcome-grid, .visit-grid{ grid-template-columns: 1fr; gap: 30px; }
     .hero-side{ border-left:none; padding-left:0; border-top: 1.5px solid var(--ink); padding-top: 26px; }
     .expect-grid{ grid-template-columns: 1fr; }
@@ -534,9 +545,9 @@
           </h1>
         </div>
         <div class="hero-side reveal stagger-1">
-          <p>A Spirit-filled family in Yonkers, gathered around worship, the Word, and one another — every single Sunday.</p>
+          <p>A Spirit-filled family in Yonkers, gathered around worship, the Word, and one another every single Sunday.</p>
           <div class="hero-scripture">
-            “May the God of hope fill you with all joy and peace as you trust in him, so that you may overflow with hope by the power of the Holy Spirit.” <span>— Romans 15:13</span>
+            “May the God of hope fill you with all joy and peace as you trust in him, so that you may overflow with hope by the power of the Holy Spirit.” <span> Romans 15:13</span>
           </div>
           <div class="hero-actions">
             <a class="btn btn-solid" href="#visit">Plan Your Visit</a>
@@ -564,11 +575,11 @@
       </div>
       <div class="welcome-grid">
         <div class="reveal stagger-1">
-          <blockquote>"Whether it's your first Sunday or your five-hundredth, our doors — and our hearts — are open."</blockquote>
+          <blockquote>"Whether it's your first Sunday or your five-hundredth, our doors and our hearts are open."</blockquote>
           <p>Come expecting to encounter God and to be known. Center of Hope is built on Spirit-filled worship, straightforward preaching, and real relationships that carry past the closing prayer.</p>
           <div class="scripture-quote">
             “And let us consider how we may spur one another on toward love and good deeds, not giving up meeting together... but encouraging one another.”
-            <span>— Hebrews 10:24–25</span>
+            <span> Hebrews 10:24–25</span>
           </div>
         </div>
         <div class="pastor-row reveal stagger-2">
@@ -592,7 +603,7 @@
         </div>
         <div class="tag">
           “I was glad when they said unto me, 'Let us go to the house of the Lord.'”<br>
-          <span style="font-size:0.75rem; color:var(--flame-soft); margin-top:4px; display:inline-block;">— Psalm 122:1</span>
+          <span style="font-size:0.75rem; color:var(--flame-soft); margin-top:4px; display:inline-block;"> Psalm 122:1</span>
         </div>
       </div>
       <div class="times-list">
@@ -632,7 +643,7 @@
           <p>Music that's full-voiced and Spirit-led — come ready to sing, raise your hands, and encounter God.</p>
           <div class="scripture-quote">
             “Where the Spirit of the Lord is, there is freedom.”
-            <span>— 2 Corinthians 3:17</span>
+            <span> 2 Corinthians 3:17</span>
           </div>
         </div>
         <div class="expect-item reveal stagger-2">
@@ -641,7 +652,7 @@
           <p>Practical, Scripture-rooted preaching you can carry into Monday, not just Sunday.</p>
           <div class="scripture-quote">
             “They devoted themselves to the apostles’ teaching...”
-            <span>— Acts 2:42</span>
+            <span> Acts 2:42</span>
           </div>
         </div>
         <div class="expect-item reveal stagger-3">
@@ -650,7 +661,7 @@
           <p>Real relationships, prayer support, and people who'll remember your name after one visit.</p>
           <div class="scripture-quote">
             “How good and pleasant it is when God’s people live together in unity!”
-            <span>— Psalm 133:1</span>
+            <span> Psalm 133:1</span>
           </div>
         </div>
       </div>
@@ -712,7 +723,7 @@
       <div class="give-note-wrapper reveal stagger-3">
         <p class="give-note">You're also welcome to give in person during any Sunday service.</p>
         <div style="font-style: italic; font-size: 0.88rem; color: var(--ink-soft);">
-          “Each of you should give what you have decided in your heart to give, for God loves a cheerful giver.” <span style="font-style:normal; font-family:'Archivo'; font-weight:700; font-size:0.72rem; color:var(--flame); text-transform:uppercase;">— 2 Corinthians 9:7</span>
+          “Each of you should give what you have decided in your heart to give, for God loves a cheerful giver.” <span style="font-style:normal; font-family:'Archivo'; font-weight:700; font-size:0.72rem; color:var(--flame); text-transform:uppercase;"> 2 Corinthians 9:7</span>
         </div>
       </div>
     </div>
@@ -840,4 +851,3 @@
 
 </body>
 </html>
-
