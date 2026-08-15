@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Give | Center of Hope Assembly of God</title>
+<meta name="description" content="Give to Center of Hope Assembly of God — Zelle, Cash App, in person, and our Building Fund for a future church home in Yonkers, NY.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Give | Center Of Hope AG">
+<meta property="og:description" content="Support the ongoing work and future home of Center of Hope Assembly of God.">
+<meta property="og:url" content="https://kwakukod.github.io/CenterOfHope/give.html">
+<meta property="og:site_name" content="Center Of Hope AG">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,500;0,600;0,700;0,800;1,500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink: #22292E;
+    --ink-soft: #4B555C;
+    --paper: #F6F4EF;
+    --white: #FFFFFF;
+    --flame: #A32B2E;
+    --flame-soft: #C65C4C;
+    --line: rgba(34,41,46,0.16);
+    --max: 1180px;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    font-family: 'IBM Plex Sans', sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  h1,h2,h3{
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+  p{ line-height: 1.7; color: var(--ink-soft); }
+  a{ color: inherit; text-decoration: none; }
+  .wrap{ max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+  .kicker{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--flame);
+  }
+  .kicker .num{
+    font-family:'Archivo', sans-serif;
+    color: var(--ink);
+    background: var(--white);
+    box-shadow: inset 0 0 0 1.5px var(--ink);
+    width: 26px; height:26px;
+    display:flex; align-items:center; justify-content:center;
+    font-size: 0.72rem;
+  }
+  .kicker.on-dark .num{ background: transparent; box-shadow: inset 0 0 0 1.5px rgba(246,244,239,0.5); color: var(--paper); }
+  .kicker.on-dark{ color: var(--flame-soft); }
+
+  .flame-mark{ display:inline-block; flex-shrink:0; }
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex; align-items:center; gap:9px;
+    font-family:'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 15px 26px;
+    border: 1.5px solid var(--ink);
+    cursor: pointer;
+    transition: transform 0.25s var(--ease-out), background 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.25s ease;
+  }
+  .btn:hover{ transform: translateY(-3px); box-shadow: 0 6px 16px rgba(0,0,0,0.08); }
+  .btn:active{ transform: translateY(-1px); }
+  .btn-solid{ background: var(--ink); color: var(--paper); }
+  .btn-solid:hover{ background: var(--flame); border-color: var(--flame); }
+  .btn-line{ background: transparent; color: var(--ink); }
+  .btn-line:hover{ background: var(--ink); color: var(--paper); }
+
+  /* ---------- Nav ---------- */
+  header{
+    position: fixed; top:0; left:0; right:0; z-index: 100;
+    background: rgba(246, 244, 239, 0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1.5px solid var(--ink);
+  }
+  nav{
+    display:flex; align-items:center; justify-content: space-between;
+    max-width: var(--max); margin: 0 auto; padding: 12px 24px;
+    position: relative;
+  }
+  .brand{ display:flex; align-items:center; gap:12px; }
+  .brand img{
+    height: 100px;
+    width: auto;
+    display: block;
+    margin-top: -15px;
+    margin-bottom: -55px;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease;
+  }
+  .brand:hover img{ transform: scale(1.03); }
+  .brand-text{ font-family:'Archivo', sans-serif; font-weight: 800; font-size: 0.95rem; line-height:1.2; text-transform: uppercase; }
+  .brand-text span{ display:block; font-family:'IBM Plex Sans', sans-serif; font-weight: 400; text-transform:none; font-size: 0.72rem; color: var(--ink-soft); }
+  .nav-links{ display:flex; align-items:center; gap: 30px; list-style:none; margin:0; padding:0; }
+  .nav-links a{
+    font-family:'Archivo', sans-serif; font-weight: 600; font-size: 0.82rem;
+    text-transform: uppercase; letter-spacing: 0.03em;
+    position: relative;
+    padding-bottom: 4px;
+  }
+  .nav-links a.current{ color: var(--flame); }
+  .nav-links a::after{
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; width: 0%; height: 2px;
+    background-color: var(--flame);
+    transition: width 0.25s var(--ease-out);
+  }
+  .nav-links a:hover::after{ width: 100%; }
+  .nav-cta{ display:flex; align-items:center; gap:12px; }
+  .hamburger{ display:none; background:none; border:none; cursor:pointer; padding: 6px; margin-left: 4px; color: var(--ink); }
+  .hamburger svg{ display:block; }
+
+  .mobile-drawer{
+    display:none; position: absolute; top: 100%; right: 0; width: max-content; min-width: 220px;
+    background: var(--paper); border: 1.5px solid var(--ink); border-top:none;
+    padding: 10px 8px;
+    opacity: 0; transform: translateY(-10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+  }
+  .mobile-drawer.open{
+    display:flex; flex-direction:column;
+    opacity: 1; transform: translateY(0);
+    pointer-events: auto;
+  }
+  .mobile-drawer a{ font-family:'Archivo', sans-serif; font-weight:600; text-transform: uppercase; font-size:0.85rem; padding: 12px 16px; transition: background 0.15s ease; }
+  .mobile-drawer a:hover{ background: rgba(34,41,46,0.06); }
+  .mobile-drawer .btn{ margin: 8px 12px 4px; justify-content:center; }
+
+  /* ---------- Page banner (instead of the full photo hero on the homepage) ---------- */
+  .page-banner{
+    background: var(--ink);
+    color: var(--paper);
+    padding: clamp(150px, 20vw, 190px) 0 60px;
+    border-bottom: 1.5px solid var(--ink);
+  }
+  .page-banner .kicker{ color: var(--flame-soft); }
+  .page-banner h1{
+    font-size: clamp(2.6rem, 6vw, 4.6rem);
+    line-height: 0.98;
+    margin: 16px 0 0;
+  }
+  .page-banner h1 .flame-word{ color: var(--flame-soft); }
+  .page-banner p.lede{
+    color: rgba(246,244,239,0.75);
+    font-size: 1.05rem;
+    max-width: 620px;
+    margin: 20px 0 0;
+  }
+
+  /* ---------- Section shell ---------- */
+  section{ padding: clamp(64px, 8vw, 104px) 0; border-bottom: 1.5px solid var(--ink); }
+  section:last-of-type{ border-bottom: none; }
+  .section-head{ display:flex; justify-content: space-between; align-items:flex-end; gap: 30px; margin-bottom: 46px; flex-wrap:wrap; }
+  .section-head h2{ font-size: clamp(2rem, 4vw, 3rem); margin-top: 10px; line-height: 1; max-width: 620px; }
+  .section-head .tag{ font-family:'Archivo', sans-serif; font-weight:600; font-size: 0.85rem; color: var(--ink-soft); max-width: 300px; text-align:right; }
+
+  /* ---------- Give ---------- */
+  .give{ background: var(--paper); }
+  .give-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 0; border: 1px solid var(--ink); }
+  .give-card{ padding: 32px; border-right: 1px solid var(--ink); transition: background 0.3s ease, transform 0.3s var(--ease-out); }
+  .give-card:hover{ background: var(--white); transform: translateY(-3px); }
+  .give-card:last-child{ border-right:none; }
+  .give-card h3{ font-size: 1.05rem; margin-bottom: 10px; }
+  .give-card p{ font-size: 0.9rem; margin-bottom: 10px; }
+  .give-card .value{
+    font-family:'Archivo', sans-serif; font-weight: 700; font-size: 1.05rem;
+    color: var(--ink); border-bottom: 2px solid var(--flame);
+    display:inline-block; padding-bottom: 2px; transition: color 0.2s ease;
+  }
+  .give-card:hover .value{ color: var(--flame); }
+  .give-note-wrapper{ margin-top: 24px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px; align-items:flex-end; }
+  .give-note{ font-size: 0.9rem; margin:0; }
+
+  /* ---------- Building Fund / Project ---------- */
+  .project{ background: var(--ink); color: var(--paper); }
+  .project .section-head h2{ color: var(--paper); }
+  .project .section-head .tag{ color: rgba(246,244,239,0.6); }
+  .project-grid{ display:grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items:start; }
+  .project-copy h3{ color:var(--paper); font-size: 1.4rem; margin-bottom: 14px; }
+  .project-copy p{ color: rgba(246,244,239,0.72); }
+  .project-copy p + p{ margin-top: 14px; }
+
+  .project-card{
+    background: rgba(246,244,239,0.05);
+    border: 1px solid rgba(246,244,239,0.18);
+    padding: 30px;
+  }
+  .project-card .fund-label{
+    font-family:'Archivo', sans-serif; font-weight:700; font-size: 0.72rem;
+    text-transform:uppercase; letter-spacing:0.1em; color: var(--flame-soft);
+    margin-bottom: 10px;
+  }
+  .project-card .fund-name{
+    font-size: 1.5rem; margin-bottom: 22px; line-height:1.05;
+  }
+  .progress-track{
+    width: 100%; height: 12px;
+    background: rgba(246,244,239,0.15);
+    overflow: hidden;
+    margin-bottom: 14px;
+  }
+  .progress-fill{
+    height: 100%;
+    background: linear-gradient(90deg, var(--flame), var(--flame-soft));
+    width: 0%;
+    transition: width 1.1s var(--ease-out);
+  }
+  .progress-stats{
+    display:flex; justify-content: space-between; align-items:baseline;
+    font-family:'Archivo', sans-serif;
+    margin-bottom: 26px;
+  }
+  .progress-stats .raised{ font-size: 1.5rem; font-weight: 800; color: var(--paper); }
+  .progress-stats .raised #raisedLabel{ font-size: 0.85rem; font-weight:600; color: rgba(246,244,239,0.55); text-transform:none; }
+  .progress-stats .pct{
+    font-size: 0.95rem; font-weight:700; color: var(--flame-soft);
+    box-shadow: inset 0 0 0 1.5px rgba(246,244,239,0.3);
+    padding: 6px 12px;
+  }
+  .project-card .placeholder-note{
+    font-size: 0.78rem; color: rgba(246,244,239,0.45); font-style: italic; margin-bottom: 22px;
+  }
+  .project-card .placeholder-note code{
+    font-family: monospace; font-style: normal;
+    background: rgba(246,244,239,0.1); color: var(--flame-soft);
+    padding: 1px 5px;
+  }
+  .project-give-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap: 14px; }
+  .project-give-list li{
+    display:flex; justify-content:space-between; align-items:center; gap: 12px;
+    padding: 14px 0; border-top: 1px solid rgba(246,244,239,0.14);
+  }
+  .project-give-list .label{ font-family:'Archivo', sans-serif; font-weight:600; font-size: 0.85rem; color: rgba(246,244,239,0.6); text-transform: uppercase; letter-spacing:0.04em; }
+  .project-give-list .value{ font-family:'Archivo', sans-serif; font-weight:700; color: var(--paper); }
+
+  /* ---------- Other Ways ---------- */
+  .other-ways{ background: var(--white); }
+  .other-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--line); }
+  .other-item{ padding: 30px 26px; border-right: 1px solid var(--line); }
+  .other-item:last-child{ border-right:none; }
+  .other-item h3{ font-size: 1.05rem; margin-bottom: 10px; }
+  .other-item p{ font-size: 0.92rem; margin:0; }
+
+  /* ---------- FAQ ---------- */
+  .faq{ background: var(--paper); }
+  .faq-list{ display:flex; flex-direction:column; }
+  .faq-item{ padding: 24px 0; border-top: 1px solid var(--line); }
+  .faq-item:last-child{ border-bottom: 1px solid var(--line); }
+  .faq-item h3{ font-size: 1rem; margin-bottom: 8px; text-transform:none; }
+  .faq-item p{ font-size: 0.92rem; margin:0; max-width: 680px; }
+
+  /* ---------- Footer ---------- */
+  footer{ background: var(--paper); padding: 36px 0 26px; }
+  .footer-grid{ display:flex; justify-content: space-between; align-items:center; flex-wrap:wrap; gap: 20px; }
+  .footer-brand{ display:flex; align-items:center; gap:10px; font-family:'Archivo', sans-serif; font-weight:700; font-size: 0.85rem; text-transform:uppercase; }
+  .footer-brand img{ height: 30px; width:30px; }
+  .social-row{ display:flex; gap:10px; }
+  .social-row a{
+    display:flex; align-items:center; justify-content:center;
+    width: 36px; height: 36px; border: 1.5px solid var(--ink); color: var(--ink);
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+  .social-row a:hover{ background: var(--flame); border-color: var(--flame); color: var(--paper); transform: translateY(-3px); }
+  .footer-bottom{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size: 0.78rem; color: var(--ink-soft); margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--line); }
+
+  /* ---------- Reveal ---------- */
+  .reveal{ opacity:0; transform: translateY(24px); transition: opacity 1.2s var(--ease-out), transform 1.2s var(--ease-out); will-change: opacity, transform; }
+  .reveal.active{ opacity:1; transform: translateY(0); }
+  .stagger-1{ transition-delay: 0.15s; }
+  .stagger-2{ transition-delay: 0.3s; }
+  .stagger-3{ transition-delay: 0.45s; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 880px){
+    .project-grid{ grid-template-columns: 1fr; gap: 34px; }
+    .give-grid{ grid-template-columns: 1fr; }
+    .give-card{ border-right:none; border-bottom: 1px solid var(--ink); }
+    .other-grid{ grid-template-columns: 1fr; }
+    .other-item{ border-right:none; border-bottom: 1px solid var(--line); }
+    .section-head{ flex-direction: column; align-items:flex-start; }
+    .section-head .tag{ text-align:left; }
+    .nav-links{ display:none; }
+    .nav-cta .btn{ display:none; }
+    .hamburger{ display:inline-flex; }
+  }
+  @media (min-width: 881px){
+    .mobile-drawer{ display:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header id="navbar">
+  <nav>
+    <a class="brand" href="index.html">
+      <img src="COHAG2.png" alt="Center of Hope Assembly of God logo">
+      <span class="brand-text">Center of Hope<span>Assembly of God · Yonkers, NY</span></span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html#welcome">About</a></li>
+      <li><a href="index.html#times">Services</a></li>
+      <li><a href="index.html#watch">Watch</a></li>
+      <li><a href="give.html" class="current">Give</a></li>
+      <li><a href="index.html#visit">Visit</a></li>
+    </ul>
+
+    <div class="nav-cta">
+      <a class="btn btn-line" href="give.html">Give</a>
+      <a class="btn btn-solid" href="index.html#visit">Plan a Visit</a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+        <svg id="hamburgerIcon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="mobile-drawer" id="mobileDrawer">
+      <a href="index.html#welcome">About</a>
+      <a href="index.html#times">Services</a>
+      <a href="index.html#watch">Watch</a>
+      <a href="give.html">Give</a>
+      <a href="index.html#visit">Visit</a>
+      <a class="btn btn-solid" href="index.html#visit">Plan a Visit</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <!-- PAGE BANNER -->
+  <section class="page-banner">
+    <div class="wrap">
+      <div class="kicker on-dark reveal"><span class="num">$</span> Give</div>
+      <h1 class="reveal stagger-1">Sow into the work<br>of <span class="flame-word">Center of Hope</span>.</h1>
+      <p class="lede reveal stagger-2">Every gift, whether it's your weekly offering or a contribution toward our future home, helps this family keep worshiping, serving Yonkers, and growing together.</p>
+    </div>
+  </section>
+
+  <!-- GIVE TODAY -->
+  <section class="give" id="give-today">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <div class="kicker"><span class="num">01</span> Ongoing Giving</div>
+          <h2>Give toward this week's offering.</h2>
+        </div>
+        <div class="tag">Fast, simple ways to give from wherever you are.</div>
+      </div>
+      <div class="give-grid">
+        <div class="give-card reveal stagger-1">
+          <h3>Zelle</h3>
+          <p>Send directly from your bank's app.</p>
+          <div class="value">agcenterofhope@gmail.com</div>
+        </div>
+        <div class="give-card reveal stagger-2">
+          <h3>Cash App</h3>
+          <p>Give in a few taps from the Cash App.</p>
+          <div class="value">$agcenterofhope</div>
+        </div>
+      </div>
+      <div class="give-note-wrapper reveal stagger-3">
+        <p class="give-note">You're also welcome to give in person during any Sunday service.</p>
+        <div style="font-style: italic; font-size: 0.88rem; color: var(--ink-soft);">
+          “Each of you should give what you have decided in your heart to give, for God loves a cheerful giver.” <span style="font-style:normal; font-family:'Archivo'; font-weight:700; font-size:0.72rem; color:var(--flame); text-transform:uppercase;">2 Corinthians 9:7</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUILDING FUND -->
+  <section class="project" id="building-fund">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <div class="kicker on-dark"><span class="num">02</span> Building Fund</div>
+          <h2>Help us build our next home.</h2>
+        </div>
+        <div class="tag">A place to grow into, for generations of Center of Hope to come.</div>
+      </div>
+
+      <div class="project-grid">
+        <div class="project-copy reveal stagger-1">
+          <h3>Why we're building</h3>
+          <p>Center of Hope is planning to purchase or build a permanent home for our growing congregation in Yonkers. A space to worship, disciple, and serve our community without limits.</p>
+          <p><em>[Will add a paragraph here on the vision for the new building: size, location plans, timeline, and what it will make possible for the church and the community.]</em></p>
+        </div>
+
+        <div class="project-card reveal stagger-2" id="fundCard" data-raised="10000" data-goal="500000">
+          <div class="fund-label">Building &amp; Land Fund</div>
+          <div class="fund-name">[Project Name — e.g. "A New Home for Center of Hope"]</div>
+
+          <div class="progress-track"><div class="progress-fill" id="progressFill" style="width: 0%;"></div></div>
+          <div class="progress-stats">
+            <div class="raised"><span id="raisedAmount">$0</span> <span id="raisedLabel">raised of $0 goal</span></div>
+            <div class="pct" id="progressPct">0%</div>
+          </div>
+          <div class="placeholder-note">The goal/progress figures above are placeholders — will update with campaign's real numbers once i get it from church and update weekly or monthly.</div>
+
+          <ul class="project-give-list">
+            <li><span class="label">Zelle</span><span class="value">agcenterofhope@gmail.com</span></li>
+            <li><span class="label">Cash App</span><span class="value">$agcenterofhope</span></li>
+          </ul>
+          <p style="font-size:0.82rem; color:rgba(246,244,239,0.55); margin-top:16px; margin-bottom:0;">Please note "Building Fund" in the memo or payment note so your gift is directed correctly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OTHER WAYS -->
+  <section class="other-ways">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <div class="kicker"><span class="num">03</span> More Ways</div>
+          <h2>Other ways to support Center of Hope.</h2>
+        </div>
+      </div>
+      <div class="other-grid">
+        <div class="other-item reveal stagger-1">
+          <h3>In Person</h3>
+          <p>Give during any Sunday service: Sunday School at 9:30 AM or Worship at 10:30 AM.</p>
+        </div>
+        <div class="other-item reveal stagger-2">
+          <h3>By Mail or Check</h3>
+          <p>Mail a check to 12 Warburton Ave, Yonkers, NY 10701, made out to Center of Hope Assembly of God.</p>
+        </div>
+        <div class="other-item reveal stagger-3">
+          <h3>Questions?</h3>
+          <p>Reach the church office at (646) 586-1299 or agcenterofhope@gmail.com. We're happy to help.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <div class="kicker"><span class="num">04</span> Good to Know</div>
+          <h2>A few common questions.</h2>
+        </div>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item reveal stagger-1">
+          <h3>Is my gift tax-deductible?</h3>
+          <p><em>[Will check with church's tax-exempt / receipt policy here.]</em></p>
+        </div>
+        <div class="faq-item reveal stagger-2">
+          <h3>How is the Building Fund kept separate from general giving?</h3>
+          <p><em>[Will check with church for a short note on how Building Fund gifts are tracked and used, if they'd like to include this.]</em></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="COHAG2.png" alt="Center of Hope Assembly of God logo">
+        Center of Hope Assembly of God
+      </div>
+      <div class="social-row">
+        <a href="https://www.facebook.com/CenterofHopeAG" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 4h-2a4 4 0 0 0-4 4v3H6v3h3v6h3v-6h3l1-3h-4V8a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/centerofhopeag" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@centerofhopeag" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Center of Hope Assembly of God. All rights reserved.</span>
+      <span>12 Warburton Ave, Yonkers, NY 10701</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const hamburgerIcon = document.getElementById('hamburgerIcon');
+  const mobileDrawer = document.getElementById('mobileDrawer');
+
+  function closeDrawer(){
+    mobileDrawer.classList.remove('open');
+    hamburgerBtn.setAttribute('aria-expanded', 'false');
+    hamburgerIcon.innerHTML = '<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>';
+  }
+
+  hamburgerBtn.addEventListener('click', () => {
+    const isOpen = mobileDrawer.classList.toggle('open');
+    hamburgerBtn.setAttribute('aria-expanded', String(isOpen));
+    hamburgerIcon.innerHTML = isOpen
+      ? '<line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/>'
+      : '<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>';
+  });
+
+  mobileDrawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
+
+  document.addEventListener('click', (e) => {
+    if (!mobileDrawer.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+      closeDrawer();
+    }
+  });
+
+  const observerOptions = { root: null, rootMargin: '0px 0px -50px 0px', threshold: 0.12 };
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    }, 100);
+  });
+  
+  // Building Fund progress bar — auto-calculates from the data-raised / data-goal
+  // attributes on the #fundCard element. Update those two numbers as gifts come in
+  // and everything below (bar width, percentage, dollar labels) updates itself.
+  (function updateFundProgress(){
+    const card = document.getElementById('fundCard');
+    if (!card) return;
+
+    const raised = Number(card.dataset.raised) || 0;
+    const goal = Number(card.dataset.goal) || 0;
+    const pct = goal > 0 ? Math.min(100, Math.max(0, (raised / goal) * 100)) : 0;
+
+    const money = (n) => '$' + Math.round(n).toLocaleString('en-US');
+
+    document.getElementById('raisedAmount').textContent = money(raised);
+    document.getElementById('raisedLabel').textContent = `raised of ${money(goal)} goal`;
+    document.getElementById('progressPct').textContent = Math.round(pct) + '%';
+
+    const fill = document.getElementById('progressFill');
+    // animate in shortly after load so the bar visibly fills rather than snapping to width
+    requestAnimationFrame(() => {
+      setTimeout(() => { fill.style.width = pct + '%'; }, 250);
+    });
+  })();
+</script>
+
+</body>
+</html>
