@@ -174,6 +174,19 @@
     max-width: 620px;
     margin: 20px 0 0;
   }
+  
+  /* ---------- Group intro chips (jump links) ---------- */
+  .group-jump{ display:flex; flex-wrap:wrap; gap: 10px; margin-top: 32px; }
+  .group-jump a{
+    font-family:'Archivo', sans-serif; font-weight:700; font-size: 0.78rem;
+    text-transform:uppercase; letter-spacing:0.05em;
+    padding: 9px 16px;
+    border: 1.5px solid rgba(246,244,239,0.35);
+    color: rgba(246,244,239,0.85);
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+  .group-jump a:hover{ border-color: var(--flame-soft); color: var(--flame-soft); }
+
 
   /* ---------- Section shell ---------- */
   section{ padding: clamp(64px, 8vw, 104px) 0; border-bottom: 1.5px solid var(--ink); }
@@ -385,7 +398,7 @@
 
 <header id="navbar">
   <nav>
-    <a class="brand" href="#top">
+    <a class="brand" href="index.html">
       <img src="COHAG.png" alt="Center of Hope Assembly of God logo">
       <span class="brand-text">Center of Hope<span>Assembly of God · Yonkers, NY</span></span>
     </a>
@@ -430,6 +443,11 @@
       <div class="kicker on-dark reveal">Groups</div>
       <h1 class="reveal stagger-1">Find your <span class="flame-word">people</span>.</h1>
       <p class="lede reveal stagger-2">Sunday is one hour. These are the people you do the other six days with; pray with, laugh with, get real with. Find your group below.</p>
+      <div class="group-jump reveal stagger-2">
+        <a href="#men">Mmarima Kuo — Men</a>
+        <a href="#women">Mmaa Kuo — Women</a>
+        <a href="#youth">Youth &amp; Young Adults</a>
+      </div>
     </div>
   </section>
 
@@ -472,7 +490,7 @@
   </section>
 
   <!-- WOMEN'S GROUP -->
-  <section class="group group-women" id="womens">
+  <section class="group group-women" id="women">
     <div class="group-ghost">MMAA</div>
     <div class="wrap group-layout">
       <div class="group-copy reveal">
