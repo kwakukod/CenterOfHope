@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Watch | Center of Hope Assembly of God</title>
+<meta name="description" content="Watch Center of Hope Assembly of God live on YouTube or Facebook, or catch up on past sermons — Yonkers, NY.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Watch | Center Of Hope AG">
+<meta property="og:description" content="Worship with Center of Hope Assembly of God live online, or catch up on past sermons.">
+<meta property="og:url" content="https://kwakukod.github.io/CenterOfHope/watch.html">
+<meta property="og:site_name" content="Center Of Hope AG">
+<meta property="og:image" content="https://kwakukod.github.io/CenterOfHope/images/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="images/COHAG2.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,500;0,600;0,700;0,800;1,500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* ---------- Page banner ---------- */
+  .page-banner{
+    background: var(--ink);
+    color: var(--paper);
+    padding: clamp(150px, 20vw, 190px) 0 60px;
+    border-bottom: 1.5px solid var(--ink);
+  }
+  .page-banner .kicker{ color: var(--flame-soft); }
+  .page-banner h1{
+    font-size: clamp(2.6rem, 6vw, 4.6rem);
+    line-height: 0.98;
+    margin: 16px 0 0;
+  }
+  .page-banner h1 .flame-word{ color: var(--flame-soft); }
+  .page-banner p.lede{
+    color: rgba(246,244,239,0.75);
+    font-size: 1.05rem;
+    max-width: 620px;
+    margin: 20px 0 0;
+  }
+
+  /* ---------- Section shell ---------- */
+  section{ padding: clamp(64px, 8vw, 104px) 0; border-bottom: 1.5px solid var(--ink); }
+  section:last-of-type{ border-bottom: none; }
+  .section-head{ display:flex; justify-content: space-between; align-items:flex-end; gap: 30px; margin-bottom: 46px; flex-wrap:wrap; }
+  .section-head h2{ font-size: clamp(2rem, 4vw, 3rem); margin-top: 10px; line-height: 1; max-width: 620px; }
+  .section-head .tag{ font-family:'Archivo', sans-serif; font-weight:600; font-size: 0.85rem; color: var(--ink-soft); max-width: 300px; text-align:right; }
+
+  /* ---------- Live Player ---------- */
+  .live{ background: var(--ink); color: var(--paper); }
+  .live .section-head h2{ color: var(--paper); }
+  .live .section-head .tag{ color: rgba(246,244,239,0.6); }
+  .live-shell{ border: 1px solid rgba(246,244,239,0.2); background: rgba(246,244,239,0.03); }
+  .live-tabs{ display:flex; border-bottom: 1px solid rgba(246,244,239,0.2); }
+  .live-tab{
+    flex:1; text-align:center;
+    font-family:'Archivo', sans-serif; font-weight:700; font-size: 0.85rem;
+    text-transform:uppercase; letter-spacing:0.05em;
+    padding: 16px; cursor:pointer; border:none; background:transparent;
+    color: rgba(246,244,239,0.55);
+    display:flex; align-items:center; justify-content:center; gap:9px;
+    transition: color 0.2s ease, background 0.2s ease;
+  }
+  .live-tab svg{ width:18px; height:18px; }
+  .live-tab.active{ color: var(--paper); background: rgba(246,244,239,0.06); }
+  .live-tab:not(.active):hover{ color: rgba(246,244,239,0.8); }
+  .live-tab:first-child{ border-right: 1px solid rgba(246,244,239,0.2); }
+
+  .live-stage{ position:relative; aspect-ratio: 16/9; background:#000; }
+  .live-frame{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+  .live-fallback{
+    position:absolute; inset:0;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; gap:16px; padding: 30px;
+  }
+  .live-fallback svg{ color: rgba(246,244,239,0.3); }
+  .live-fallback p{ color: rgba(246,244,239,0.6); max-width: 380px; margin:0; font-size:0.92rem; }
+  .live-fallback .btn{ border-color: rgba(246,244,239,0.4); color: var(--paper); }
+  .live-fallback .btn:hover{ background: var(--flame); border-color: var(--flame); }
+
+  .live-meta{
+    display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:16px;
+    padding: 20px 24px;
+  }
+  .live-chip{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Archivo', sans-serif; font-weight:700; font-size: 0.78rem;
+    text-transform:uppercase; letter-spacing:0.05em;
+    color: rgba(246,244,239,0.65);
+  }
+  .live-chip .dot{ width:8px; height:8px; border-radius:50%; background: var(--flame); }
+  .live-meta p{ margin:0; color: rgba(246,244,239,0.5); font-size: 0.85rem; }
+
+  /* ---------- Sermon archive ---------- */
+  .sermons{ background: var(--paper); }
+  .sermon-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--ink); }
+  .sermon-card{
+    background: var(--white); border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink);
+    display:flex; flex-direction:column;
+    transition: background 0.25s ease;
+  }
+  .sermon-grid .sermon-card:nth-child(3n){ border-right:none; }
+  .sermon-grid .sermon-card:nth-last-child(-n+3){ border-bottom:none; }
+  .sermon-card:hover{ background: var(--paper); }
+  .sermon-thumb{
+    aspect-ratio: 16/9; background: var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+  }
+  .sermon-thumb svg{ color: rgba(246,244,239,0.35); transition: color 0.2s ease, transform 0.2s ease; }
+  .sermon-card:hover .sermon-thumb svg{ color: var(--flame-soft); transform: scale(1.08); }
+  .sermon-info{ padding: 20px 22px 24px; flex-grow:1; display:flex; flex-direction:column; }
+  .sermon-info .date{
+    font-family:'Archivo', sans-serif; font-weight:700; font-size: 0.7rem;
+    text-transform:uppercase; letter-spacing:0.08em; color: var(--flame);
+    margin-bottom: 8px;
+  }
+  .sermon-info h3{ font-size: 1.02rem; text-transform:none; margin-bottom: 8px; line-height:1.25; }
+  .sermon-info p{ font-size: 0.85rem; margin:0 0 auto; }
+  .sermon-info .watch-link{
+    margin-top: 16px;
+    font-family:'Archivo', sans-serif; font-weight:700; font-size: 0.78rem;
+    text-transform:uppercase; letter-spacing:0.04em; color: var(--ink);
+    display:inline-flex; align-items:center; gap:6px;
+  }
+  .sermon-card:hover .watch-link{ color: var(--flame); }
+  .archive-note{
+    margin-top: 24px; font-size: 0.85rem; color: var(--ink-soft); font-style: italic;
+  }
+
+  /* ---------- Follow along ---------- */
+  .follow{ background: var(--white); }
+  .follow-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--line); }
+  .follow-card{
+    padding: 28px; border-right: 1px solid var(--line);
+    display:flex; flex-direction:column; gap: 12px;
+    transition: background 0.25s ease;
+  }
+  .follow-card:last-child{ border-right:none; }
+  .follow-card:hover{ background: var(--paper); }
+  .follow-card .top{ display:flex; align-items:center; gap:10px; color: var(--flame); }
+  .follow-card h3{ font-size: 1rem; margin:0; }
+  .follow-card .stat{ font-family:'Archivo', sans-serif; font-weight:700; font-size: 0.72rem; text-transform:uppercase; letter-spacing:0.05em; color: var(--ink-soft); }
+  .follow-card p{ font-size: 0.88rem; margin:0; }
+
+  /* ---------- Watching from home ---------- */
+  .tips{ background: var(--paper); }
+  .tips-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--line); }
+  .tip-item{ padding: 30px 26px; border-right: 1px solid var(--line); }
+  .tip-item:last-child{ border-right:none; }
+  .tip-item .num{
+    font-family:'Archivo', sans-serif; font-weight:800; font-size: 0.95rem;
+    color: var(--flame); margin-bottom: 14px;
+  }
+  .tip-item h3{ font-size: 1.02rem; margin-bottom: 8px; }
+  .tip-item p{ font-size: 0.9rem; margin:0; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 880px){
+    .sermon-grid{ grid-template-columns: repeat(2, 1fr); }
+    .sermon-grid .sermon-card:nth-child(3n){ border-right: 1px solid var(--ink); }
+    .sermon-grid .sermon-card:nth-child(2n){ border-right:none; }
+    .sermon-grid .sermon-card:nth-last-child(-n+3){ border-bottom: 1px solid var(--ink); }
+    .sermon-grid .sermon-card:nth-last-child(-n+2){ border-bottom:none; }
+    .follow-grid, .tips-grid{ grid-template-columns: 1fr; }
+    .follow-card, .tip-item{ border-right:none; border-bottom: 1px solid var(--line); }
+    .live-meta{ flex-direction:column; align-items:flex-start; }
+    .section-head{ flex-direction: column; align-items:flex-start; }
+    .section-head .tag{ text-align:left; }
+    .nav-links{ display:none; }
+    .nav-cta .btn{ display:none; }
+    .hamburger{ display:inline-flex; }
+  }
+  @media (max-width: 560px){
+    .sermon-grid{ grid-template-columns: 1fr; }
+    .sermon-grid .sermon-card{ border-right:none !important; border-bottom: 1px solid var(--ink) !important; }
+    .sermon-grid .sermon-card:last-child{ border-bottom:none !important; }
+  }
+  @media (min-width: 881px){
+    .mobile-drawer{ display:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header id="navbar">
+  <nav>
+    <a class="brand" href="index.html">
+      <img src="images/COHAG.png" alt="Center of Hope Assembly of God logo">
+      <span class="brand-text">Center of Hope<span>Assembly of God · Yonkers, NY</span></span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html#welcome">About</a></li>
+      <li><a href="staff.html">Staff</a></li>
+      <li><a href="groups.html">Groups</a></li>
+      <li><a href="index.html#times">Services</a></li>
+      <li><a href="watch.html" class="current">Watch</a></li>
+    </ul>
+
+    <div class="nav-cta">
+      <a class="btn btn-line" href="give.html">Give</a>
+      <a class="btn btn-solid" href="index.html#visit">Plan a Visit</a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+        <svg id="hamburgerIcon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="mobile-drawer" id="mobileDrawer">
+      <a href="index.html#welcome">About</a>
+      <a href="staff.html">Staff</a>
+      <a href="groups.html">Groups</a>
+      <a href="index.html#times">Services</a>
+      <a href="watch.html">Watch</a>
+      <a href="index.html#visit">Plan a Visit</a>
+      <a class="btn btn-solid" href="give.html">Give</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <!-- PAGE BANNER -->
+  <section class="page-banner">
+    <div class="wrap">
+      <div class="kicker on-dark reveal"><span class="num">▶</span> Watch</div>
+      <h1 class="reveal stagger-1">Worship with us,<br><span class="flame-word">wherever</span> you are.</h1>
+      <p class="lede reveal stagger-2">Join us live on Sunday, or catch up on a past message any day of the week. Same Word, same family — just wherever you're watching from.</p>
+    </div>
+  </section>
+
+  <!-- LIVE PLAYER -->
+  <section class="live" id="live">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <div class="kicker on-dark"><span class="num">01</span> Live Now</div>
+          <h2>Catch the church live.</h2>
+        </div>
+        <div class="tag">Choose your platform — same service, either way.</div>
+      </div>
+
+      <div class="live-shell reveal stagger-1">
+        <div class="live-tabs">
+          <button class="live-tab active" id="tabYoutube" data-platform="youtube">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg>
+            YouTube
+          </button>
+          <button class="live-tab" id="tabFacebook" data-platform="facebook">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 4h-2a4 4 0 0 0-4 4v3H6v3h3v6h3v-6h3l1-3h-4V8a1 1 0 0 1 1-1h3z"/></svg>
+            Facebook
+          </button>
+        </div>
+
+        <div class="live-stage" id="liveStage">
+          <!-- JS fills this in with either an embedded player or a fallback card -->
+        </div>
+
+        <div class="live-meta">
+          <div class="live-chip"><span class="dot"></span> Sundays · 9:30 &amp; 10:30 AM ET</div>
+          <p>Not showtime yet? You'll land on our latest replay instead.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREVIOUS SERMONS -->
+  <section class="sermons" id="sermons">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <div class="kicker"><span class="num">02</span> Sermon Archive</div>
+          <h2>Missed a Sunday? Start here.</h2>
+        </div>
+        <div class="tag">Recent messages, pulled from our YouTube channel.</div>
+      </div>
+
+      <div class="sermon-grid" id="sermonGrid">
+        <!-- Static placeholder cards. If YOUTUBE_API_KEY + UPLOADS_PLAYLIST_ID are set in the
+             script below, these are replaced automatically with the channel's real recent uploads. -->
+        <div class="sermon-card reveal stagger-1">
+          <div class="sermon-thumb"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4z" fill="currentColor" stroke="none"/></svg></div>
+          <div class="sermon-info">
+            <div class="date">[Date]</div>
+            <h3>[Sermon title]</h3>
+            <p>[One-line description of the message.]</p>
+            <a class="watch-link" href="https://www.youtube.com/@centerofhopeag" target="_blank" rel="noopener">Watch on YouTube →</a>
+          </div>
+        </div>
+        <div class="sermon-card reveal stagger-2">
+          <div class="sermon-thumb"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4z" fill="currentColor" stroke="none"/></svg></div>
+          <div class="sermon-info">
+            <div class="date">[Date]</div>
+            <h3>[Sermon title]</h3>
+            <p>[One-line description of the message.]</p>
+            <a class="watch-link" href="https://www.youtube.com/@centerofhopeag" target="_blank" rel="noopener">Watch on YouTube →</a>
+          </div>
+        </div>
+        <div class="sermon-card reveal stagger-3">
+          <div class="sermon-thumb"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4z" fill="currentColor" stroke="none"/></svg></div>
+          <div class="sermon-info">
+            <div class="date">[Date]</div>
+            <h3>[Sermon title]</h3>
+            <p>[One-line description of the message.]</p>
+            <a class="watch-link" href="https://www.youtube.com/@centerofhopeag" target="_blank" rel="noopener">Watch on YouTube →</a>
+          </div>
+        </div>
+        <div class="sermon-card reveal stagger-1">
+          <div class="sermon-thumb"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4z" fill="currentColor" stroke="none"/></svg></div>
+          <div class="sermon-info">
+            <div class="date">[Date]</div>
+            <h3>[Sermon title]</h3>
+            <p>[One-line description of the message.]</p>
+            <a class="watch-link" href="https://www.youtube.com/@centerofhopeag" target="_blank" rel="noopener">Watch on YouTube →</a>
+          </div>
+        </div>
+        <div class="sermon-card reveal stagger-2">
+          <div class="sermon-thumb"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4z" fill="currentColor" stroke="none"/></svg></div>
+          <div class="sermon-info">
+            <div class="date">[Date]</div>
+            <h3>[Sermon title]</h3>
+            <p>[One-line description of the message.]</p>
+            <a class="watch-link" href="https://www.youtube.com/@centerofhopeag" target="_blank" rel="noopener">Watch on YouTube →</a>
+          </div>
+        </div>
+        <div class="sermon-card reveal stagger-3">
+          <div class="sermon-thumb"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4z" fill="currentColor" stroke="none"/></svg></div>
+          <div class="sermon-info">
+            <div class="date">[Date]</div>
+            <h3>[Sermon title]</h3>
+            <p>[One-line description of the message.]</p>
+            <a class="watch-link" href="https://www.youtube.com/@centerofhopeag" target="_blank" rel="noopener">Watch on YouTube →</a>
+          </div>
+        </div>
+      </div>
+      <p class="archive-note">These six are placeholders until the channel connection below is configured — see the note in the page's source for a one-time setup step to make this list pull automatically.</p>
+    </div>
+  </section>
+
+  <!-- FOLLOW ALONG -->
+  <section class="follow" id="follow">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <div class="kicker"><span class="num">03</span> Stay In The Loop</div>
+          <h2>Follow along everywhere.</h2>
+        </div>
+      </div>
+      <div class="follow-grid">
+        <a class="follow-card reveal stagger-1" href="https://www.youtube.com/@centerofhopeag" target="_blank" rel="noopener">
+          <div class="top">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg>
+            <h3>YouTube</h3>
+          </div>
+          <div class="stat">149 Videos · 81 Subscribers</div>
+          <p>Full services and special gatherings, archived every week.</p>
+        </a>
+        <a class="follow-card reveal stagger-2" href="https://www.facebook.com/CenterofHopeAG" target="_blank" rel="noopener">
+          <div class="top">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 4h-2a4 4 0 0 0-4 4v3H6v3h3v6h3v-6h3l1-3h-4V8a1 1 0 0 1 1-1h3z"/></svg>
+            <h3>Facebook</h3>
+          </div>
+          <div class="stat">1.8K+ Followers</div>
+          <p>Live every Sunday, plus updates throughout the week.</p>
+        </a>
+        <a class="follow-card reveal stagger-3" href="https://www.instagram.com/centerofhopeag" target="_blank" rel="noopener">
+          <div class="top">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+            <h3>Instagram</h3>
+          </div>
+          <div class="stat">@centerofhopeag</div>
+          <p>Sermon clips, event photos, and behind-the-scenes.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WATCHING FROM HOME -->
+  <section class="tips">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <div class="kicker"><span class="num">04</span> Watching From Home</div>
+          <h2>Make it count from the couch.</h2>
+        </div>
+      </div>
+      <div class="tips-grid">
+        <div class="tip-item reveal stagger-1">
+          <div class="num">01</div>
+          <h3>Say hello</h3>
+          <p>Drop a comment on the stream — our team reads them live and loves knowing who's tuning in.</p>
+        </div>
+        <div class="tip-item reveal stagger-2">
+          <div class="num">02</div>
+          <h3>Give online</h3>
+          <p>Still part of the offering, even from home. <a href="give.html" style="border-bottom:1.5px solid var(--flame); font-weight:600;">Visit our Giving page →</a></p>
+        </div>
+        <div class="tip-item reveal stagger-3">
+          <div class="num">03</div>
+          <h3>Stay connected</h3>
+          <p>Reach out anytime at agcenterofhope@gmail.com — we'd love to follow up and pray with you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="images/COHAG2.png" alt="Center of Hope Assembly of God logo">
+        Center of Hope Assembly of God
+      </div>
+      <div class="social-row">
+        <a href="https://www.facebook.com/CenterofHopeAG" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 4h-2a4 4 0 0 0-4 4v3H6v3h3v6h3v-6h3l1-3h-4V8a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/centerofhopeag" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@centerofhopeag" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Center of Hope Assembly of God. All rights reserved.</span>
+      <span>12 Warburton Ave, Yonkers, NY 10701</span>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js" defer></script>
+<script>
+/* =====================================================================
+   LIVE PLAYER SETUP — fill these in once, and both tabs go live.
+
+   YOUTUBE_CHANNEL_ID: your channel's "UC..." ID (NOT the @handle).
+     Find it: YouTube Studio → Settings → Channel → Advanced settings,
+     or any "channel ID finder" tool with your @handle.
+   FACEBOOK_PAGE: your Page's username as it appears in its URL
+     (e.g. facebook.com/CenterofHopeAG -> "CenterofHopeAG").
+
+   Until YOUTUBE_CHANNEL_ID is filled in, the YouTube tab shows a
+   "watch on YouTube" fallback instead of a broken embed — same for
+   Facebook. Both link straight to the channel/page in the meantime.
+   ===================================================================== */
+const YOUTUBE_CHANNEL_ID = "UCc7ZDWdxlDhPnGYQtEvcCNg"; // e.g. "UCxxxxxxxxxxxxxxxxxxxxxx"
+const FACEBOOK_PAGE = "CenterofHopeAG";
+
+/* Optional: wire up the Sermon Archive to auto-pull recent uploads.
+   1) Create a free YouTube Data API v3 key in Google Cloud Console and
+      restrict it to your site's domain (HTTP referrer restriction).
+   2) Get your channel's "uploads" playlist ID: it's your channel ID
+      with the "UC" prefix swapped for "UU" (e.g. UCxxxx -> UUxxxx).
+   Leave YOUTUBE_API_KEY empty to keep the static placeholder cards. */
+const YOUTUBE_API_KEY = "";
+const UPLOADS_PLAYLIST_ID = "";
+
+document.addEventListener('DOMContentLoaded', () => {
+  const stage = document.getElementById('liveStage');
+  const tabs = { youtube: document.getElementById('tabYoutube'), facebook: document.getElementById('tabFacebook') };
+
+  function renderPlatform(platform){
+    Object.values(tabs).forEach(t => t.classList.remove('active'));
+    tabs[platform].classList.add('active');
+
+    if (platform === 'youtube' && YOUTUBE_CHANNEL_ID) {
+      stage.innerHTML = `<iframe class="live-frame" src="https://www.youtube.com/embed/live_stream?channel=${YOUTUBE_CHANNEL_ID}&autoplay=0" title="Center of Hope live on YouTube" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+    } else if (platform === 'facebook' && FACEBOOK_PAGE) {
+      const pageUrl = encodeURIComponent(`https://www.facebook.com/${FACEBOOK_PAGE}/live/`);
+      stage.innerHTML = `<iframe class="live-frame" src="https://www.facebook.com/plugins/video.php?href=${pageUrl}&show_text=0" title="Center of Hope live on Facebook" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+    } else {
+      const link = platform === 'youtube'
+        ? 'https://www.youtube.com/@centerofhopeag'
+        : 'https://www.facebook.com/CenterofHopeAG';
+      const label = platform === 'youtube' ? 'YouTube' : 'Facebook';
+      stage.innerHTML = `
+        <div class="live-fallback">
+          <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4z" fill="currentColor" stroke="none"/></svg>
+          <p>The live player isn't connected yet — head to ${label} directly to catch the stream.</p>
+          <a class="btn btn-line" href="${link}" target="_blank" rel="noopener">Watch on ${label}</a>
+        </div>`;
+    }
+  }
+
+  tabs.youtube.addEventListener('click', () => renderPlatform('youtube'));
+  tabs.facebook.addEventListener('click', () => renderPlatform('facebook'));
+  renderPlatform('youtube');
+
+  // ---------- Optional: pull recent uploads into the Sermon Archive ----------
+  if (YOUTUBE_API_KEY && UPLOADS_PLAYLIST_ID) {
+    fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=6&playlistId=${UPLOADS_PLAYLIST_ID}&key=${YOUTUBE_API_KEY}`)
+      .then(r => r.json())
+      .then(data => {
+        if (!data.items || !data.items.length) return;
+        const grid = document.getElementById('sermonGrid');
+        const note = document.querySelector('.archive-note');
+        grid.innerHTML = data.items.map(item => {
+          const s = item.snippet;
+          const thumb = s.thumbnails?.medium?.url || '';
+          const videoId = s.resourceId.videoId;
+          const date = new Date(s.publishedAt).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
+          return `
+            <div class="sermon-card reveal active">
+              <div class="sermon-thumb" style="background-image:url('${thumb}'); background-size:cover; background-position:center;"></div>
+              <div class="sermon-info">
+                <div class="date">${date}</div>
+                <h3>${s.title}</h3>
+                <p>${(s.description || '').slice(0, 90)}</p>
+                <a class="watch-link" href="https://www.youtube.com/watch?v=${videoId}" target="_blank" rel="noopener">Watch on YouTube →</a>
+              </div>
+            </div>`;
+        }).join('');
+        if (note) note.remove();
+      })
+      .catch(() => { /* keep static placeholders on any error */ });
+  }
+});
+</script>
+
+</body>
+</html>

@@ -10,150 +10,17 @@
 <meta property="og:description" content="Meet the people who lead and serve Center of Hope Assembly of God.">
 <meta property="og:url" content="https://kwakukod.github.io/CenterOfHope/staff.html">
 <meta property="og:site_name" content="Center Of Hope AG">
+<meta property="og:image" content="https://kwakukod.github.io/CenterOfHope/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="favicon.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,500;0,600;0,700;0,800;1,500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 <style>
-  :root{
-    --ink: #22292E;
-    --ink-soft: #4B555C;
-    --paper: #F6F4EF;
-    --white: #FFFFFF;
-    --flame: #A32B2E;
-    --flame-soft: #C65C4C;
-    --line: rgba(34,41,46,0.16);
-    --max: 1180px;
-    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  *{ box-sizing: border-box; }
-  html{ scroll-behavior: smooth; }
-  body{
-    margin:0;
-    font-family: 'IBM Plex Sans', sans-serif;
-    color: var(--ink);
-    background: var(--paper);
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
-  h1,h2,h3{
-    font-family: 'Archivo', sans-serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: -0.01em;
-    margin: 0;
-  }
-  p{ line-height: 1.7; color: var(--ink-soft); }
-  a{ color: inherit; text-decoration: none; }
-  .wrap{ max-width: var(--max); margin: 0 auto; padding: 0 24px; }
-
-  .kicker{
-    display:flex; align-items:center; gap:10px;
-    font-family:'Archivo', sans-serif;
-    font-weight: 700;
-    font-size: 0.78rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--flame);
-  }
-  .kicker .num{
-    font-family:'Archivo', sans-serif;
-    color: var(--ink);
-    background: var(--white);
-    box-shadow: inset 0 0 0 1.5px var(--ink);
-    width: 26px; height:26px;
-    display:flex; align-items:center; justify-content:center;
-    font-size: 0.72rem;
-  }
-  .kicker.on-dark .num{ background: transparent; box-shadow: inset 0 0 0 1.5px rgba(246,244,239,0.5); color: var(--paper); }
-  .kicker.on-dark{ color: var(--flame-soft); }
-
-  /* ---------- Buttons ---------- */
-  .btn{
-    display:inline-flex; align-items:center; gap:9px;
-    font-family:'Archivo', sans-serif;
-    font-weight: 700;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    padding: 15px 26px;
-    border: 1.5px solid var(--ink);
-    cursor: pointer;
-    transition: transform 0.25s var(--ease-out), background 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.25s ease;
-  }
-  .btn:hover{ transform: translateY(-3px); box-shadow: 0 6px 16px rgba(0,0,0,0.08); }
-  .btn:active{ transform: translateY(-1px); }
-  .btn-solid{ background: var(--ink); color: var(--paper); }
-  .btn-solid:hover{ background: var(--flame); border-color: var(--flame); }
-  .btn-line{ background: transparent; color: var(--ink); }
-  .btn-line:hover{ background: var(--ink); color: var(--paper); }
-
-  /* ---------- Nav ---------- */
-  header{
-    position: fixed; top:0; left:0; right:0; z-index: 100;
-    background: rgba(246, 244, 239, 0.92);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1.5px solid var(--ink);
-  }
-  nav{
-    display:flex; align-items:center; justify-content: space-between;
-    max-width: var(--max); margin: 0 auto; padding: 12px 24px;
-    position: relative;
-  }
-  .brand{ display:flex; align-items:center; gap:12px; }
-  .brand img{
-    height: 100px;
-    width: auto;
-    display: block;
-    margin-top: -15px;
-    margin-bottom: -55px;
-    position: relative;
-    z-index: 1;
-    transition: transform 0.3s ease;
-  }
-  .brand:hover img{ transform: scale(1.03); }
-  .brand-text{ font-family:'Archivo', sans-serif; font-weight: 800; font-size: 0.95rem; line-height:1.2; text-transform: uppercase; }
-  .brand-text span{ display:block; font-family:'IBM Plex Sans', sans-serif; font-weight: 400; text-transform:none; font-size: 0.72rem; color: var(--ink-soft); }
-  .nav-links{ display:flex; align-items:center; gap: 30px; list-style:none; margin:0; padding:0; }
-  .nav-links a{
-    font-family:'Archivo', sans-serif; font-weight: 600; font-size: 0.82rem;
-    text-transform: uppercase; letter-spacing: 0.03em;
-    position: relative;
-    padding-bottom: 4px;
-  }
-  .nav-links a.current{ color: var(--flame); }
-  .nav-links a::after{
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; width: 0%; height: 2px;
-    background-color: var(--flame);
-    transition: width 0.25s var(--ease-out);
-  }
-  .nav-links a:hover::after{ width: 100%; }
-  .nav-cta{ display:flex; align-items:center; gap:12px; }
-  .hamburger{ display:none; background:none; border:none; cursor:pointer; padding: 6px; margin-left: 4px; color: var(--ink); }
-  .hamburger svg{ display:block; }
-
-  .mobile-drawer{
-    display:none; position: absolute; top: 100%; right: 0; width: max-content; min-width: 220px;
-    background: var(--paper); border: 1.5px solid var(--ink); border-top:none;
-    padding: 10px 8px;
-    opacity: 0; transform: translateY(-10px);
-    transition: opacity 0.2s ease, transform 0.2s ease;
-    pointer-events: none;
-  }
-  .mobile-drawer.open{
-    display:flex; flex-direction:column;
-    opacity: 1; transform: translateY(0);
-    pointer-events: auto;
-  }
-  .mobile-drawer a{ font-family:'Archivo', sans-serif; font-weight:600; text-transform: uppercase; font-size:0.85rem; padding: 12px 16px; transition: background 0.15s ease; }
-  .mobile-drawer a:hover{ background: rgba(34,41,46,0.06); }
-  .mobile-drawer .btn{ margin: 8px 12px 4px; justify-content:center; }
-
   /* ---------- Page banner ---------- */
   .page-banner{
     background: var(--ink);
@@ -250,28 +117,6 @@
   .staff-info p{ font-size: 0.88rem; margin:0; }
   .staff-info .fill-note{ font-size: 0.78rem; font-style: italic; color: rgba(75,85,92,0.55); margin-top: auto; padding-top: 12px; }
 
-  /* ---------- Footer ---------- */
-  footer{ background: var(--paper); padding: 36px 0 26px; }
-  .footer-grid{ display:flex; justify-content: space-between; align-items:center; flex-wrap:wrap; gap: 20px; }
-  .footer-brand{ display:flex; align-items:center; gap:10px; font-family:'Archivo', sans-serif; font-weight:700; font-size: 0.85rem; text-transform:uppercase; }
-  .footer-brand img{ height: 30px; width:30px; }
-  .social-row{ display:flex; gap:10px; }
-  .social-row a{
-    display:flex; align-items:center; justify-content:center;
-    width: 36px; height: 36px; border: 1.5px solid var(--ink); color: var(--ink);
-    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
-  }
-  .social-row a:hover{ background: var(--flame); border-color: var(--flame); color: var(--paper); transform: translateY(-3px); }
-  .footer-bottom{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size: 0.78rem; color: var(--ink-soft); margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--line); }
-
-  /* ---------- Reveal ---------- */
-  .reveal{ opacity:0; transform: translateY(24px); transition: opacity 1.2s var(--ease-out), transform 1.2s var(--ease-out); will-change: opacity, transform; }
-  .reveal.active{ opacity:1; transform: translateY(0); }
-  .stagger-1{ transition-delay: 0.1s; }
-  .stagger-2{ transition-delay: 0.2s; }
-  .stagger-3{ transition-delay: 0.3s; }
-  .stagger-4{ transition-delay: 0.4s; }
-
   /* ---------- Responsive ---------- */
   @media (max-width: 880px){
     .staff-grid, .staff-grid.staff-grid-4{ grid-template-columns: repeat(2, 1fr); }
@@ -296,7 +141,7 @@
 <header id="navbar">
   <nav>
     <a class="brand" href="index.html">
-      <img src="COHAG.png" alt="Center of Hope Assembly of God logo">
+      <img src="images/COHAG.png" alt="Center of Hope Assembly of God logo">
       <span class="brand-text">Center of Hope<span>Assembly of God · Yonkers, NY</span></span>
     </a>
 
@@ -356,7 +201,7 @@
 
       <div class="pastor-feature reveal stagger-1">
         <div class="staff-photo">
-          <img src="Pastor_Prince.jpg" alt="Pastor Prince Paul Agyemang Boateng" style="object-position: 65% 15%;">
+          <img src="images/Pastor_Prince.jpg" alt="Pastor Prince Paul Agyemang Boateng" style="object-position: 65% 15%;">
         </div>
         <div class="pastor-info">
           <div class="role">Lead Pastor</div>
@@ -470,7 +315,7 @@
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="COHAG2.png" alt="Center of Hope Assembly of God logo">
+        <img src="images/COHAG2.png" alt="Center of Hope Assembly of God logo">
         Center of Hope Assembly of God
       </div>
       <div class="social-row">
@@ -492,51 +337,7 @@
   </div>
 </footer>
 
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  const hamburgerBtn = document.getElementById('hamburgerBtn');
-  const hamburgerIcon = document.getElementById('hamburgerIcon');
-  const mobileDrawer = document.getElementById('mobileDrawer');
-
-  function closeDrawer(){
-    mobileDrawer.classList.remove('open');
-    hamburgerBtn.setAttribute('aria-expanded', 'false');
-    hamburgerIcon.innerHTML = '<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>';
-  }
-
-  hamburgerBtn.addEventListener('click', () => {
-    const isOpen = mobileDrawer.classList.toggle('open');
-    hamburgerBtn.setAttribute('aria-expanded', String(isOpen));
-    hamburgerIcon.innerHTML = isOpen
-      ? '<line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/>'
-      : '<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>';
-  });
-
-  mobileDrawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
-
-  document.addEventListener('click', (e) => {
-    if (!mobileDrawer.contains(e.target) && !hamburgerBtn.contains(e.target)) {
-      closeDrawer();
-    }
-  });
-
-  const observerOptions = { root: null, rootMargin: '0px 0px -50px 0px', threshold: 0.12 };
-  const revealObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
-
-  window.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => {
-      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-    }, 100);
-  });
-</script>
+<script src="main.js" defer></script>
 
 </body>
 </html>
