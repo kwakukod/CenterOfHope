@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Groups | Center of Hope Assembly of God</title>
-<meta name="description" content="Men's (Mmarima Kuo), Women's (Mmaa Kuo), and Youth &amp; Young Adults groups at Center of Hope Assembly of God, Yonkers, NY.">
+<meta name="description" content="Men's (Mmarima Kuo), Women's (Mmaa Kuo), Youth, and Young Adults groups at Center of Hope Assembly of God, Yonkers, NY.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Groups | Center Of Hope AG">
-<meta property="og:description" content="Find your people at Center of Hope — Men's, Women's, and Youth &amp; Young Adults groups.">
+<meta property="og:description" content="Find your people at Center of Hope — Men's, Women's, Youth, and Young Adults groups.">
 <meta property="og:url" content="https://kwakukod.github.io/CenterOfHope/groups.html">
 <meta property="og:site_name" content="Center Of Hope AG">
 <meta property="og:image" content="https://kwakukod.github.io/CenterOfHope/images/og-image.jpg">
@@ -221,6 +221,65 @@
     .marquee-track{ animation: none; }
   }
 
+  /* ============================================================
+     YOUNG ADULTS
+     Clean / editorial — the "next chapter" after Youth
+     ============================================================ */
+  .group-young-adults{ background: var(--ink); color: var(--paper); }
+  .group-young-adults .group-layout{ display:grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items:start; }
+  .group-young-adults .unit-tag{
+    font-family:'Archivo', sans-serif; font-weight:700; font-size: 0.72rem;
+    letter-spacing: 0.14em; color: var(--flame-soft); text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .group-young-adults h2{
+    color: var(--paper); font-weight:900; font-size: clamp(2.4rem, 5vw, 3.6rem);
+    line-height:0.95; margin-bottom: 10px;
+  }
+  .group-young-adults .group-tagline{
+    font-family:'Archivo', sans-serif; font-weight:700; font-style:italic;
+    font-size: clamp(1.15rem, 1.9vw, 1.4rem); color: rgba(246,244,239,0.85);
+    margin: 6px 0 24px;
+  }
+  .group-young-adults .group-copy p{ font-size: 1rem; max-width: 540px; color: rgba(246,244,239,0.72); }
+  .group-young-adults .group-copy p + p{ margin-top: 14px; }
+
+  .group-young-adults .pillar-row{
+    display:flex; flex-wrap:wrap; gap: 0; margin: 28px 0 4px;
+    border-top: 1px solid rgba(246,244,239,0.2); border-bottom: 1px solid rgba(246,244,239,0.2);
+  }
+  .group-young-adults .pillar{
+    flex:1; min-width: 140px;
+    font-family:'Archivo', sans-serif; font-weight:700; font-size: 0.78rem;
+    text-transform:uppercase; letter-spacing:0.05em; color: rgba(246,244,239,0.85);
+    padding: 16px 18px; border-right: 1px solid rgba(246,244,239,0.2);
+  }
+  .group-young-adults .pillar:last-child{ border-right:none; }
+
+  .group-young-adults .group-meta{ display:flex; flex-wrap:wrap; gap: 32px; margin-top: 30px; padding-top: 24px; border-top: 1px solid rgba(246,244,239,0.18); }
+  .group-young-adults .group-meta .item .label{
+    font-family:'Archivo', sans-serif; font-weight:700; font-size: 0.7rem;
+    text-transform:uppercase; letter-spacing:0.1em; margin-bottom: 6px; color: rgba(246,244,239,0.5);
+  }
+  .group-young-adults .group-meta .item .val{ font-family:'Archivo', sans-serif; font-weight:700; font-size: 0.98rem; color: var(--paper); }
+
+  .group-young-adults .focus-card{
+    border: 1px solid rgba(246,244,239,0.22);
+    padding: 34px 30px;
+  }
+  .group-young-adults .focus-card .mark{
+    font-family:'Archivo', sans-serif; font-size: 2.6rem; font-weight:800; line-height:0.5;
+    color: var(--flame-soft); display:block; margin-bottom: 14px;
+  }
+  .group-young-adults .focus-card p{
+    font-family:'IBM Plex Sans', sans-serif; font-style:italic; font-weight:400;
+    font-size: 1.05rem; line-height:1.6; color: rgba(246,244,239,0.85); margin: 0 0 16px;
+  }
+  .group-young-adults .focus-card cite{
+    font-style:normal; font-family:'Archivo', sans-serif; font-weight:700;
+    font-size: 0.72rem; letter-spacing:0.08em; text-transform:uppercase; color: var(--flame-soft);
+  }
+
   /* ---------- Responsive ---------- */
   @media (max-width: 880px){
     .group-layout{ grid-template-columns: 1fr; gap: 34px; }
@@ -244,8 +303,8 @@
 <header id="navbar">
   <nav>
     <a class="brand" href="index.html">
-      <img src="images/COHAG.png" alt="Center of Hope Assembly of God logo">
-      <span class="brand-text">Center of Hope<span>Assembly of God · Yonkers, NY</span></span>
+      <img src="images/COHAG2.jpg" alt="Center of Hope Assembly of God logo">
+      <span class="brand-text"><span>Assembly of God</span><span>Yonkers, NY</span></span>
     </a>
 
     <ul class="nav-links">
@@ -253,12 +312,12 @@
       <li><a href="staff.html">Staff</a></li>
       <li><a href="groups.html" class="current">Groups</a></li>
       <li><a href="index.html#times">Services</a></li>
-      <li><a href="index.html#watch">Watch</a></li>
+      <li><a href="watch.html">Watch</a></li>
     </ul>
 
     <div class="nav-cta">
       <a class="btn btn-line" href="give.html">Give</a>
-      <a class="btn btn-solid" href="#visit">Plan a Visit</a>
+      <a class="btn btn-solid" href="index.html#visit">Plan a Visit</a>
       <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
         <svg id="hamburgerIcon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
           <line x1="3" y1="6" x2="21" y2="6"/>
@@ -273,7 +332,7 @@
       <a href="staff.html">Staff</a>
       <a href="groups.html">Groups</a>
       <a href="index.html#times">Services</a>
-      <a href="index.html#watch">Watch</a>
+      <a href="watch.html">Watch</a>
       <a href="index.html#visit">Plan a Visit</a>
       <a class="btn btn-solid" href="give.html">Give</a>
     </div>
@@ -289,9 +348,10 @@
       <h1 class="reveal stagger-1">Find your <span class="flame-word">people</span>.</h1>
       <p class="lede reveal stagger-2">Sunday is one hour. These are the people you do the other six days with; pray with, laugh with, get real with. Find your group below.</p>
       <div class="group-jump reveal stagger-2">
-        <a href="#men">Mmarima Kuo — Men</a>
+        <a href="#mens">Mmarima Kuo — Men</a>
         <a href="#women">Mmaa Kuo — Women</a>
-        <a href="#youth">Youth &amp; Young Adults</a>
+        <a href="#young-adults">Young Adults</a>
+        <a href="#youth">Youth</a>
       </div>
     </div>
   </section>
@@ -372,20 +432,21 @@
     </div>
   </section>
 
-  <!-- YOUTH & YOUNG ADULTS -->
-  <section class="group group-youth" id="youth">
+  <!-- YOUNG ADULTS -->
+  <section class="group group-young-adults" id="young-adults">
     <div class="wrap group-layout">
       <div class="group-copy reveal">
-        <div class="badge-row">
-          <span class="badge">Ages 13–25</span>
-          <span class="badge">Game Nights</span>
-          <span class="badge">Build on relationship with God</span>
+        <div class="unit-tag">04. Young Adults</div>
+        <h2>Faith &amp; Careers</h2>
+        <div class="group-tagline">Real life. Real faith.</div>
+        <p>For those 21 and up figuring out career, independence, relationships, and what it means to build a life with God actually in the center of it — not just Sundays.</p>
+        <p><em>[will add more on what a typical gathering looks like — small groups, career/life nights, mentorship, service, etc.]</em></p>
+
+        <div class="pillar-row">
+          <div class="pillar">Career &amp; Calling</div>
+          <div class="pillar">Community</div>
+          <div class="pillar">Next Steps</div>
         </div>
-        <div class="unit-tag">03. Youth &amp; Young Adults</div>
-        <h2>Faith &amp; Friends</h2>
-        <div class="group-tagline">Faith that moves.</div>
-        <p>For students and young adults figuring out who they are and whose they are. Real questions welcome, no performance required — just a community chasing after God together, loudly and honestly.</p>
-        <p><em>[will add more on what a typical gathering looks like — game nights, worship nights, small groups, service trips, age range covered, etc.]</em></p>
 
         <div class="group-meta">
           <div class="item"><div class="label">Meets</div><div class="val">[Day &amp; time]</div></div>
@@ -394,7 +455,43 @@
         </div>
 
         <div class="group-actions">
-          <a class="btn btn-solid" href="mailto:agcenterofhope@gmail.com?subject=Youth%20%26%20Young%20Adults">Get Connected</a>
+          <a class="btn btn-solid" href="mailto:agcenterofhope@gmail.com?subject=Young%20Adults">Get Connected</a>
+        </div>
+      </div>
+
+      <div class="focus-card reveal stagger-1">
+        <span class="mark">"</span>
+        <p>For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, plans to give you hope and a future.</p>
+        <cite>Jeremiah 29:11</cite>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+  <!-- YOUTH -->
+  <section class="group group-youth" id="youth">
+    <div class="wrap group-layout">
+      <div class="group-copy reveal">
+        <div class="badge-row">
+          <span class="badge">Ages 13–21</span>
+          <span class="badge">Game Nights</span>
+          <span class="badge">Build on relationship with God</span>
+        </div>
+        <div class="unit-tag">03. Youth</div>
+        <h2>Faith &amp; Friends</h2>
+        <div class="group-tagline">Faith that moves.</div>
+        <p>For students figuring out who they are from middle school through the last year of college. Real questions welcome, no performance required — just a community chasing after God together, loudly and honestly.</p>
+        <p><em>[will add more on what a typical gathering looks like — game nights, worship nights, small groups, service trips, etc.]</em></p>
+
+        <div class="group-meta">
+          <div class="item"><div class="label">Meets</div><div class="val">[Day &amp; time]</div></div>
+          <div class="item"><div class="label">Where</div><div class="val">[Location]</div></div>
+          <div class="item"><div class="label">Contact</div><div class="val">[Leader name / email]</div></div>
+        </div>
+
+        <div class="group-actions">
+          <a class="btn btn-solid" href="mailto:agcenterofhope@gmail.com?subject=Youth%20Group">Get Connected</a>
         </div>
       </div>
 
@@ -412,14 +509,12 @@
     </div>
   </section>
 
-</main>
-
 <footer>
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="images/COHAG2.png" alt="Center of Hope Assembly of God logo">
-        Center of Hope Assembly of God
+        <img src="images/COHAG2.jpg" alt="Center of Hope Assembly of God logo">
+        <span class="brand-text"><span>Assembly of God</span><span>Yonkers, NY</span></span>
       </div>
       <div class="social-row">
         <a href="https://www.facebook.com/CenterofHopeAG" target="_blank" rel="noopener" aria-label="Facebook">
