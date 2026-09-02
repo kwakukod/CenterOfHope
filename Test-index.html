@@ -8,14 +8,14 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Center Of Hope AG">
 <meta property="og:description" content="Come woship with us at the Center Of Hope Assembly of God.">
-<meta property="og:url" content="https://centerofhopeag/">
+<meta property="og:url" content="https://kwakukod.github.io/CenterOfHope/">
 <meta property="og:site_name" content="Center Of Hope AG">
-<meta property="og:image" content="https://centerofhopeag/images/og-image.jpg">
+<meta property="og:image" content="https://kwakukod.github.io/CenterOfHope/images/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 
 <link rel="icon" type="image/png" href="favicon.png">
-<link rel="apple-touch-icon" href="images/COHAG2.png">
+<link rel="apple-touch-icon" href="images/COHAG2.jpg">
   
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,7 +30,7 @@
     display:flex;
     flex-direction:column;
     justify-content:space-between;
-    padding: clamp(220px, 28vw, 280px) 0 34px;
+    padding: clamp(110px, 15vw, 140px) 0 34px;
     border-bottom: 1.5px solid var(--ink);
     overflow: hidden;
   }
@@ -41,11 +41,17 @@
     z-index: 0;
     overflow: hidden;
   }
-  .hero-photo img{
+  .hero-slide{
+    position:absolute; inset:0;
     width:100%; height:100%;
     object-fit: cover;
     object-position: center 22%;
     display:block;
+    opacity: 0;
+    transition: opacity 1.4s ease;
+  }
+  .hero-slide.active{
+    opacity: 1;
     animation: slowZoom 24s ease-out infinite alternate;
   }
   .hero-photo::before{
@@ -67,7 +73,20 @@
     font-family:'Archivo', sans-serif; font-weight:600; font-size: 0.72rem;
     text-transform:uppercase; letter-spacing:0.06em;
     color: var(--paper);
+    transition: opacity 0.3s ease;
   }
+  .hero-dots{
+    position:absolute; left: 24px; bottom: 18px; z-index:2;
+    display:flex; gap: 8px;
+  }
+  .hero-dots button{
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(246,244,239,0.35);
+    border: none; padding: 0; cursor: pointer;
+    transition: background 0.25s ease, transform 0.25s ease;
+  }
+  .hero-dots button.active{ background: var(--flame-soft); transform: scale(1.25); }
+  .hero-dots button:hover{ background: rgba(246,244,239,0.6); }
 
   .hero > .wrap{
     position:relative; 
@@ -125,6 +144,28 @@
   .hero-meta div{ font-family:'Archivo', sans-serif; }
   .hero-meta .label{ font-size: 0.7rem; text-transform:uppercase; letter-spacing:0.1em; color: var(--ink-soft); margin-bottom:6px; }
   .hero-meta .val{ font-weight:700; font-size: 1rem; text-transform: uppercase; }
+
+  /* ---------- Hero "plain" mode: slides after the first show only the two
+     buttons, no headline/copy/meta, and no fade or scrim over the photo ---------- */
+  .hero.hero-plain .hero-content > .reveal,
+  .hero.hero-plain .hero-side p,
+  .hero.hero-plain .hero-scripture,
+  .hero.hero-plain .hero-meta,
+  .hero.hero-plain .hero-photo-credit{
+    display: none;
+  }
+  .hero.hero-plain .hero-side{
+    border-top: none;
+    padding-top: 0;
+  }
+  .hero.hero-plain .hero-content{
+    justify-content: center;
+    min-height: 46vh;
+  }
+  .hero.hero-plain .hero-photo::before,
+  .hero.hero-plain .hero-photo::after{
+    content: none;
+  }
 
   /* ---------- Section shell ---------- */
   section{ padding: clamp(64px, 8vw, 104px) 0; border-bottom: 1.5px solid var(--ink); }
@@ -294,6 +335,7 @@
     .hero-photo{ width: 100%; opacity: 0.28; }
     .hero-photo::before{ background: linear-gradient(to right, var(--paper) 0%, rgba(246,244,239,0.75) 35%, rgba(246,244,239,0.15) 75%); }
     .hero-photo-credit{ display:none; }
+    .hero-dots{ display:none; }
   }
   @media (min-width: 881px){
     .mobile-drawer{ display:none !important; }
@@ -316,7 +358,7 @@
   <nav>
     <a class="brand" href="#top">
       <img src="images/COHAG2.jpg" alt="Center of Hope Assembly of God logo">
-      <span class="brand-text"><span>Assembly of God</span><span>Yonkers, NY</span></span>
+      <span class="brand-text">Center of Hope<span>Assembly of God · Yonkers, NY</span></span>
     </a>
 
     <ul class="nav-links">
@@ -354,11 +396,21 @@
 <main id="top">
 
   <!-- HERO -->
-  <section class="hero">
-    <div class="hero-photo">
-      <img src="images/Pastor_Prince.jpg" alt="Pastor Prince Paul Agyemang Boateng preaching at Center of Hope Assembly of God" style="object-position: 68% 18%;">
+  <section class="hero" id="heroSection">
+    <div class="hero-photo" id="heroPhoto">
+      <!-- Hero carousel: each slide is one <img class="hero-slide">. The first one shown
+           is whichever has class="active" — keep that on the photo you want as the main/
+           first image. To add more photos to the rotation, copy a line below with a new
+           src/alt/style/data-credit; the script at the bottom picks up any number of
+           slides automatically, no other changes needed.
+           Only the FIRST slide shows the full headline/copy/meta over a faded photo —
+           every slide after that shows just the two buttons over the plain photo, no
+           fade or scrim. That's controlled by the "hero-plain" class the script toggles
+           on this section — see the CSS block above titled "Hero plain mode". -->
+      <img class="hero-slide" src="images/gloria.jpg"
+      <img class="hero-slide active" src="images/Pastor_Prince.jpg" alt="Pastor Prince Paul Agyemang Boateng preaching at Center of Hope Assembly of God" style="object-position: 68% 18%;" data-credit="Pastor Prince Paul Agyemang Boateng">
     </div>
-    <div class="hero-photo-credit">Pastor Prince Paul Agyemang Boateng</div>
+    <div class="hero-photo-credit" id="heroPhotoCredit">Pastor Prince Paul Agyemang Boateng</div>
     <div class="wrap">
       <div class="hero-content">
         <div class="reveal">
@@ -438,7 +490,7 @@
             <h3>Sunday School</h3>
             <p>Bible study for all ages, digging into Scripture together before worship begins.</p>
           </div>
-          <div class="when">10 – 11:10 AM</div>
+          <div class="when">10:00 – 11:10 AM</div>
         </div>
         <div class="time-row reveal stagger-2">
           <div class="idx">02</div>
@@ -605,7 +657,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <img src="images/COHAG2.jpg" alt="Center of Hope Assembly of God logo">
-        <span class="brand-text"><span>Assembly of God</span><span>Yonkers, NY</span></span>
+        Center of Hope Assembly of God
       </div>
       <div class="social-row">
         <a href="https://www.facebook.com/CenterofHopeAG" target="_blank" rel="noopener" aria-label="Facebook">
@@ -627,6 +679,57 @@
 </footer>
 
 <script src="main.js" defer></script>
+<script>
+/* Hero photo carousel — auto-advances through every .hero-slide inside
+   #heroPhoto every 6 seconds, crossfading between them. Works fine with
+   just one slide (simply shows it, no rotation). Dots only render when
+   there's more than one photo. */
+document.addEventListener('DOMContentLoaded', () => {
+  const photoEl = document.getElementById('heroPhoto');
+  const creditEl = document.getElementById('heroPhotoCredit');
+  if (!photoEl) return;
+  const slides = Array.from(photoEl.querySelectorAll('.hero-slide'));
+  if (!slides.length) return;
+
+  let current = Math.max(0, slides.findIndex(s => s.classList.contains('active')));
+  let timer = null;
+  const heroSection = document.getElementById('heroSection');
+
+  function show(i){
+    slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
+    if (creditEl) creditEl.textContent = slides[i].dataset.credit || '';
+    if (dots.length) dots.forEach((d, idx) => d.classList.toggle('active', idx === i));
+    if (heroSection) heroSection.classList.toggle('hero-plain', i !== 0);
+    current = i;
+  }
+
+  function next(){ show((current + 1) % slides.length); }
+
+  function startAutoplay(){
+    if (slides.length < 2) return;
+    clearInterval(timer);
+    timer = setInterval(next, 6000);
+  }
+
+  let dots = [];
+  if (slides.length > 1) {
+    const dotWrap = document.createElement('div');
+    dotWrap.className = 'hero-dots';
+    slides.forEach((_, idx) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.setAttribute('aria-label', `Show photo ${idx + 1}`);
+      b.addEventListener('click', () => { show(idx); startAutoplay(); });
+      dotWrap.appendChild(b);
+    });
+    photoEl.after(dotWrap);
+    dots = Array.from(dotWrap.children);
+  }
+
+  show(current);
+  startAutoplay();
+});
+</script>
 
 </body>
 </html>

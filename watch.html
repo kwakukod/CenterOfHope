@@ -8,13 +8,13 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Watch | Center Of Hope AG">
 <meta property="og:description" content="Worship with Center of Hope Assembly of God live online, or catch up on past sermons.">
-<meta property="og:url" content="https://kwakukod.github.io/CenterOfHope/watch.html">
+<meta property="og:url" content="https://centerofhopeag/watch.html">
 <meta property="og:site_name" content="Center Of Hope AG">
-<meta property="og:image" content="https://kwakukod.github.io/CenterOfHope/images/og-image.jpg">
+<meta property="og:image" content="https://centerofhopeag/images/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <link rel="icon" type="image/png" href="favicon.png">
-<link rel="apple-touch-icon" href="images/COHAG2.jpg">
+<link rel="apple-touch-icon" href="favicon.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,7 +25,7 @@
   .page-banner{
     background: var(--ink);
     color: var(--paper);
-    padding: clamp(96px, 13vw, 130px) 0 60px;
+    padding: clamp(150px, 20vw, 190px) 0 60px;
     border-bottom: 1.5px solid var(--ink);
   }
   .page-banner .kicker{ color: var(--flame-soft); }
@@ -190,7 +190,7 @@
   <nav>
     <a class="brand" href="index.html">
       <img src="images/COHAG2.jpg" alt="Center of Hope Assembly of God logo">
-      <span class="brand-text"><span>Assembly of God</span><span>Yonkers, NY</span></span>
+      <span class="brand-text"><span>Assembly of God · Yonkers, NY</span></span>
     </a>
 
     <ul class="nav-links">
@@ -283,7 +283,7 @@
       </div>
 
       <div class="sermon-grid" id="sermonGrid">
-        <!-- Static placeholder cards. If YOUTUBE_API_KEY + UPLOADS_PLAYLIST_ID are set in the
+        <!-- Static placeholder cards. If YOUTUBE_API_KEY + SERMONS_PLAYLIST_ID are set in the
              script below, these are replaced automatically with the channel's real recent uploads. -->
         <div class="sermon-card reveal stagger-1">
           <div class="sermon-thumb"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4z" fill="currentColor" stroke="none"/></svg></div>
@@ -418,7 +418,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <img src="images/COHAG2.jpg" alt="Center of Hope Assembly of God logo">
-        <span class="brand-text"><span>Assembly of God</span><span>Yonkers, NY</span></span>
+        Assembly of God
       </div>
       <div class="social-row">
         <a href="https://www.facebook.com/CenterofHopeAG" target="_blank" rel="noopener" aria-label="Facebook">
@@ -450,8 +450,13 @@
    YOUTUBE_API_KEY: a real YouTube Data API v3 key from Google Cloud
      Console (looks like "AIzaSy..."), restricted to your site's domain.
      This is DIFFERENT from a playlist ID — don't put a playlist ID here.
-   UPLOADS_PLAYLIST_ID: your channel ID with "UC" swapped for "UU"
-     (e.g. UCxxxx -> UUxxxx). This one you already had right.
+   SERMONS_PLAYLIST_ID: the playlist the Sermon Archive below pulls from.
+     Currently set to your channel's auto-generated "uploads" playlist
+     (all channel ID with "UC" swapped for "UU"), which includes every
+     public video on the channel. To pull from a specific "Sermons"
+     playlist instead — recommended, since it won't include Children's
+     Day, youth events, etc. — open that playlist on YouTube, copy the
+     "list=PLxxxx..." value out of the URL, and paste it here instead.
 
    Without a real YOUTUBE_API_KEY, the YouTube tab can't reliably tell
    whether a stream is live or find the latest replay — YouTube's
@@ -464,95 +469,51 @@
 const YOUTUBE_CHANNEL_ID = "UCc7ZDWdxlDhPnGYQtEvcCNg";
 const FACEBOOK_PAGE = "CenterofHopeAG";
 
-const YOUTUBE_API_KEY = "AIzaSyDllQiIZb0afW4YoWZYJKaGLg6gDnItrX8"; // TODO: paste your real "AIzaSy..." API key here
-const UPLOADS_PLAYLIST_ID = "UUc7ZDWdxlDhPnGYQtEvcCNg";
-
-// Optional manual override: paste a specific Facebook video/live URL here
-// during a scheduled service to show Facebook's own live/starting-soon
-// countdown. Leave empty to just link out to the Page instead.
-const MANUAL_FACEBOOK_LIVE_URL = "";
+/* Optional: wire up the Sermon Archive to auto-pull recent uploads.
+  1) Create a free YouTube Data API v3 key in Google Cloud Console and
+     restrict it to your site's domain (HTTP referrer restriction).
+  2) Get your channel's "uploads" playlist ID: it's your channel ID
+     with the "UC" prefix swapped for "UU" (e.g. UCxxxx -> UUxxxx).
+     or create a dedicated "Sermons" playlist and copy its "list=PLxxxx..."
+     value from the URL instead.
+     Leave YOUTUBE_API_KEY empty to keep the static placeholder cards. */
+const YOUTUBE_API_KEY = "AIzaSyDllQiIZb0afW4YoWZYJKaGLg6gDnItrX8";
+const SERMONS_PLAYLIST_ID = "PLNWjE_26GkWw";
 
 document.addEventListener('DOMContentLoaded', () => {
   const stage = document.getElementById('liveStage');
   const tabs = { youtube: document.getElementById('tabYoutube'), facebook: document.getElementById('tabFacebook') };
-  let resolvedYouTubeVideo = null; // { id, isLive } once looked up, or false if none found
-  let lookupStarted = false;
-
-  function fallbackCard(platform){
-    const link = platform === 'youtube'
-      ? 'https://www.youtube.com/@centerofhopeag'
-      : 'https://www.facebook.com/CenterofHopeAG';
-    const label = platform === 'youtube' ? 'YouTube' : 'Facebook';
-    stage.innerHTML = `
-      <div class="live-fallback">
-        <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4z" fill="currentColor" stroke="none"/></svg>
-        <p>Head to ${label} directly to catch the stream or the latest replay.</p>
-        <a class="btn btn-line" href="${link}" target="_blank" rel="noopener">Watch on ${label}</a>
-      </div>`;
-  }
-
-  function renderYouTube(){
-    if (resolvedYouTubeVideo) {
-      stage.innerHTML = `<iframe class="live-frame" src="https://www.youtube.com/embed/${resolvedYouTubeVideo.id}?autoplay=0" title="Center of Hope on YouTube" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
-    } else if (resolvedYouTubeVideo === false && YOUTUBE_CHANNEL_ID) {
-      // API confirmed there's genuinely nothing to show yet
-      fallbackCard('youtube');
-    } else if (!YOUTUBE_API_KEY && YOUTUBE_CHANNEL_ID) {
-      // No API key configured — the channel-wide live embed only works
-      // at the exact moment something is live, so default to the safe
-      // fallback instead of risking YouTube's native error screen.
-      fallbackCard('youtube');
-    } else {
-      fallbackCard('youtube');
-    }
-  }
-
-  function renderFacebook(){
-    if (MANUAL_FACEBOOK_LIVE_URL) {
-      const pageUrl = encodeURIComponent(MANUAL_FACEBOOK_LIVE_URL);
-      stage.innerHTML = `<iframe class="live-frame" src="https://www.facebook.com/plugins/video.php?href=${pageUrl}&show_text=0" title="Center of Hope live on Facebook" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
-    } else {
-      fallbackCard('facebook');
-    }
-  }
 
   function renderPlatform(platform){
     Object.values(tabs).forEach(t => t.classList.remove('active'));
     tabs[platform].classList.add('active');
-    if (platform === 'youtube') renderYouTube(); else renderFacebook();
-  }
 
-  async function lookupYouTubeVideo(){
-    if (lookupStarted || !YOUTUBE_API_KEY || !YOUTUBE_CHANNEL_ID) return;
-    lookupStarted = true;
-    try {
-      // 1) Anything live right now?
-      let r = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${YOUTUBE_CHANNEL_ID}&eventType=live&type=video&key=${YOUTUBE_API_KEY}`);
-      let data = await r.json();
-      if (data.items && data.items.length) {
-        resolvedYouTubeVideo = { id: data.items[0].id.videoId, isLive: true };
-      } else {
-        // 2) Otherwise, the most recent finished broadcast
-        r = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${YOUTUBE_CHANNEL_ID}&eventType=completed&type=video&order=date&maxResults=1&key=${YOUTUBE_API_KEY}`);
-        data = await r.json();
-        resolvedYouTubeVideo = (data.items && data.items.length)
-          ? { id: data.items[0].id.videoId, isLive: false }
-          : false;
-      }
-    } catch (e) {
-      resolvedYouTubeVideo = false;
+    if (platform === 'youtube' && YOUTUBE_CHANNEL_ID) {
+      stage.innerHTML = `<iframe class="live-frame" src="https://www.youtube.com/embed/live_stream?channel=${YOUTUBE_CHANNEL_ID}&autoplay=0" title="Center of Hope live on YouTube" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+    } else if (platform === 'facebook' && FACEBOOK_PAGE) {
+      const pageUrl = encodeURIComponent(`https://www.facebook.com/${FACEBOOK_PAGE}/live/`);
+      stage.innerHTML = `<iframe class="live-frame" src="https://www.facebook.com/plugins/video.php?href=${pageUrl}&show_text=0" title="Center of Hope live on Facebook" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+    } else {
+      const link = platform === 'youtube'
+        ? 'https://www.youtube.com/@centerofhopeag'
+        : 'https://www.facebook.com/CenterofHopeAG';
+      const label = platform === 'youtube' ? 'YouTube' : 'Facebook';
+      stage.innerHTML = `
+        <div class="live-fallback">
+          <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4z" fill="currentColor" stroke="none"/></svg>
+          <p>The live player isn't connected yet — head to ${label} directly to catch the stream.</p>
+          <a class="btn btn-line" href="${link}" target="_blank" rel="noopener">Watch on ${label}</a>
+        </div>`;
     }
-    if (tabs.youtube.classList.contains('active')) renderYouTube();
   }
 
   tabs.youtube.addEventListener('click', () => renderPlatform('youtube'));
   tabs.facebook.addEventListener('click', () => renderPlatform('facebook'));
   renderPlatform('youtube');
-  lookupYouTubeVideo();
 
   // ---------- Optional: pull recent uploads into the Sermon Archive ----------
-  if (YOUTUBE_API_KEY && UPLOADS_PLAYLIST_ID) {
-    fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=6&playlistId=${UPLOADS_PLAYLIST_ID}&key=${YOUTUBE_API_KEY}`)
+  if (YOUTUBE_API_KEY && SERMONS_PLAYLIST_ID) {
+    fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=6&playlistId=${SERMONS_PLAYLIST_ID}&key=${YOUTUBE_API_KEY}`)
       .then(r => r.json())
       .then(data => {
         if (!data.items || !data.items.length) return;
