@@ -49,16 +49,16 @@
   .section-head h2{ font-size: clamp(2rem, 4vw, 3rem); margin-top: 10px; line-height: 1; max-width: 620px; }
   .section-head .tag{ font-family:'Archivo', sans-serif; font-weight:600; font-size: 0.85rem; color: var(--ink-soft); max-width: 300px; text-align:right; }
 
-  /* ---------- Pastor feature (stands alone, above the Deacons grid) ---------- */
+  /* ---------- Pastor feature ---------- */
   .pastor-feature{
     display:grid;
-    grid-template-columns: 0.85fr 1.15fr;
-    border: 1px solid var(--ink);
+    grid-template-columns: 0.75fr 1.15fr;
+    border: 5px solid var(--ink);
     background: var(--white);
     margin-bottom: 56px;
   }
-  .pastor-feature .staff-photo{ aspect-ratio: auto; height:100%; min-height: 380px; }
-  .pastor-info{ padding: 40px 44px; display:flex; flex-direction:column; justify-content:center; }
+  .pastor-feature .staff-photo{ aspect-ratio: auto; height:100%; min-height: 320px; }
+  .pastor-info{ padding: 28px 32px; display:flex; flex-direction:column; justify-content:center; }
   .pastor-info .role{
     font-family:'Archivo', sans-serif; font-weight:700; font-size: 0.78rem;
     text-transform:uppercase; letter-spacing:0.12em; color: var(--flame);
@@ -76,20 +76,21 @@
   /* ---------- Staff cards ---------- */
   .staff-grid{
     display:grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1px;
-    background: var(--ink);
-    border: 1px solid var(--ink);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    background:transparent;
+    border: none;
   }
-  .staff-grid.staff-grid-4{ grid-template-columns: repeat(4, 1fr); }
+  .staff-grid.staff-grid-3{ grid-template-columns: repeat(3, 1fr); }
   .staff-card{
     background: var(--white);
+    border: 1px solid var(--line);
     display:flex; flex-direction:column;
     transition: background 0.3s ease;
   }
   .staff-card:hover{ background: var(--paper); }
   .staff-photo{
-    aspect-ratio: 4/5;
+    aspect-ratio: 3/4;
     width:100%;
     overflow:hidden;
     background: var(--ink);
@@ -107,21 +108,21 @@
     background: linear-gradient(160deg, #2E363C, var(--ink));
   }
   .avatar-placeholder svg{ opacity:0.5; }
-  .staff-info{ padding: 22px 22px 26px; flex-grow:1; display:flex; flex-direction:column; }
+  .staff-info{ padding: 16px; flex-grow:1; display:flex; flex-direction:column; }
   .staff-info .role{
     font-family:'Archivo', sans-serif; font-weight:700; font-size: 0.72rem;
     text-transform:uppercase; letter-spacing:0.09em; color: var(--flame);
     margin-bottom: 8px;
   }
-  .staff-info h3{ font-size: 1.15rem; text-transform:none; margin-bottom: 10px; line-height:1.15; }
+  .staff-info h3{ font-size: 1rem; text-transform:none; margin-bottom: 6px; line-height:1.2; }
   .staff-info p{ font-size: 0.88rem; margin:0; }
   .staff-info .fill-note{ font-size: 0.78rem; font-style: italic; color: rgba(75,85,92,0.55); margin-top: auto; padding-top: 12px; }
 
   /* ---------- Responsive ---------- */
   @media (max-width: 880px){
-    .staff-grid, .staff-grid.staff-grid-4{ grid-template-columns: repeat(2, 1fr); }
+    .staff-grid, .staff-grid.staff-grid-3{ grid-template-columns: repeat(3, 1fr); }
     .pastor-feature{ grid-template-columns: 1fr; }
-    .pastor-feature .staff-photo{ aspect-ratio: 4/5; min-height:0; }
+    .pastor-feature .staff-photo{ aspect-ratio: 3/4; min-height:0; }
     .section-head{ flex-direction: column; align-items:flex-start; }
     .section-head .tag{ text-align:left; }
     .nav-links{ display:none; }
@@ -129,7 +130,14 @@
     .hamburger{ display:inline-flex; }
   }
   @media (max-width: 520px){
-    .staff-grid, .staff-grid.staff-grid-4{ grid-template-columns: 1fr; }
+    /* Sets 2 columns on mobile for both Deacons and Staff grids */
+    .staff-grid, .staff-grid.staff-grid-3{ 
+      grid-template-columns: repeat(2, 1fr) !important; 
+      gap: 8px;
+    }
+    .staff-card .staff-info{ padding: 10px; }
+    .staff-card .staff-info h3{ font-size: 0.88rem; margin-bottom: 2px; }
+    .staff-card .staff-info .role{ font-size: 0.62rem; }
   }
   @media (min-width: 881px){
     .mobile-drawer{ display:none !important; }
@@ -214,27 +222,21 @@
       <div class="staff-grid">
         <div class="staff-card reveal stagger-2">
           <div class="staff-photo">
-            <div class="staff-photo">
-            <img src="images/deacon.jpg" alt="Mr. Samuel Adu- Bitherman ">
-          </div>
+            <img src="images/deacon.jpg" alt="Mr. Samuel Adu-Bitherman">
           </div>
           <div class="staff-info">
             <div class="role">Deacon</div>
-            <h3>Mr. Samuel Adu- Bitherman</h3>
-            <!--<p class="fill-note">Add a photo and short bio for this position.</p>-->
+            <h3>Mr. Samuel Adu-Bitherman</h3>
           </div>
         </div>
 
         <div class="staff-card reveal stagger-3">
           <div class="staff-photo">
-            <div class="staff-photo">
-            <img src="images/deacon1.jpg" alt="Mr. ">
-          </div>
+            <img src="images/deacon1.jpg" alt="Mr. Okyere Darko">
           </div>
           <div class="staff-info">
             <div class="role">Deacon</div>
             <h3>Mr. Okyere Darko</h3>
-            <!--<p class="fill-note">Add a photo and short bio for this position.</p>-->
           </div>
         </div>
       </div>
@@ -252,7 +254,7 @@
         <div class="tag">The people behind the scenes and on stage, every week.</div>
       </div>
 
-      <div class="staff-grid staff-grid-4">
+      <div class="staff-grid staff-grid-3">
         <div class="staff-card reveal stagger-1">
           <div class="staff-photo">
             <img src="images/gloria.jpg" alt="Mrs. Gloria Brown Gaisie">
@@ -261,18 +263,16 @@
           <div class="staff-info">
             <div class="role">Praise &amp; Worship Team Leader</div>
             <h3>Mrs. Gloria Brown Gaisie</h3>
-            <!--<p class="fill-note">Leader of the Praise & Worship Team.</p>-->
           </div>
         </div>
 
         <div class="staff-card reveal stagger-2">
           <div class="staff-photo">
-            <img src="images\comsdir.jpg" alt="Mrs. Rosaline Eshun">
+            <img src="images/comsdir.jpg" alt="Mrs. Rosaline Eshun">
           </div>
           <div class="staff-info">
             <div class="role">Communications Director</div>
             <h3>Mrs. Rosaline Eshun</h3>
-            <!--<p class="fill-note">Add a photo and short bio for this position.</p>-->
           </div>
         </div>
 
@@ -283,29 +283,26 @@
           <div class="staff-info">
             <div class="role">Children's Ministry Director</div>
             <h3>Ms. Nana Ama Eshun</h3>
-            <!--<p class="fill-note">Add a photo and short bio for this position.</p>-->
           </div>
         </div>
         
         <div class="staff-card reveal stagger-4">
           <div class="staff-photo">
-            <img src="images\womens-min.jpg" alt="Ms. Cynthia Darkwah">
+            <img src="images/womens-min.jpg" alt="Ms. Cynthia Darkwah">
           </div>
           <div class="staff-info">
             <div class="role">Womens Ministry President</div>
             <h3>Ms. Cynthia Darkwah</h3>
-            <!--<p class="fill-note">Add a photo and short bio for this position.</p>-->
           </div>
         </div>
 
         <div class="staff-card reveal stagger-5">
           <div class="staff-photo">
             <img src="images/mens-min.jpg" alt="George Akwasi Boateng-Duah">
-            </div>
+          </div>
           <div class="staff-info">
             <div class="role">Men's Ministry President</div>
             <h3>George Akwasi Boateng-Duah</h3>
-            <!--<p class="fill-note">Add a photo and short bio for this position.</p>-->
           </div>
         </div>
         
